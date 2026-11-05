@@ -1,0 +1,822 @@
+:root {
+    --primary-green: #5bb02c;
+    --primary-green-dark: #4a9123;
+
+    --bg-gray: #f4f5f5;
+    --card-gray: #ececec;
+
+    --text-dark: #333333;
+
+    --white: #ffffff;
+    --border: #eeeeee;
+}
+
+
+/* =========================
+   GERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background-color: var(--bg-gray);
+
+    color: var(--text-dark);
+
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================
+   CONTAINER PADRÃO
+========================= */
+
+.container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.main-header {
+    width: 100%;
+
+    height: 120px;
+
+    background: var(--white);
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+.header-content {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-wrapper {
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+
+.logo-wrapper a {
+    display: flex;
+
+    align-items: center;
+
+    text-decoration: none;
+}
+
+
+.header-logo-img {
+    width: 100px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+
+/* =========================
+   MENU SUPERIOR
+========================= */
+
+.top-nav {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 30px;
+}
+
+
+.nav-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #c9c9c9;
+
+    font-size: 20px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.nav-item:hover {
+    color: var(--primary-green);
+
+    transform: translateY(-2px);
+}
+
+
+/* PÁGINA ATUAL */
+
+.nav-item.active {
+    color: var(--primary-green);
+}
+
+
+
+/* =========================
+   PERFIL
+========================= */
+
+.user-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-dark);
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+}
+
+
+.user-profile span {
+    color: var(--text-dark);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+.foto-home-box {
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.foto-home-box img {
+    width: 34px;
+
+    height: 34px;
+
+    display: none;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+.foto-home-box i {
+    color: var(--primary-green);
+
+    font-size: 32px;
+}
+
+
+
+/* =========================
+   CONTEÚDO HOME
+========================= */
+
+.conteudo-home {
+    padding-top: 55px;
+
+    padding-bottom: 40px;
+}
+
+
+
+/* =========================
+   CARDS
+========================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 50px;
+}
+
+
+.card {
+    min-height: 240px;
+
+    padding: 35px 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+
+    background-color: var(--card-gray);
+
+    border-radius: 25px;
+}
+
+
+.card-body {
+    width: 100%;
+}
+
+
+.card-title {
+    margin-bottom: 12px;
+
+    color: var(--text-dark);
+
+    font-size: 19px;
+}
+
+
+.card-description {
+    color: var(--primary-green);
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    line-height: 1.5;
+}
+
+
+
+/* =========================
+   CALENDÁRIO E CLIMA
+========================= */
+
+.mini-grid {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+
+.mini-item {
+    flex: 1;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+
+.mini-item span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.icon-box {
+    width: 110px;
+
+    height: 110px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f7f7f7;
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+
+.icon-box i {
+    color: var(--primary-green);
+
+    font-size: 45px;
+
+    transition: 0.3s;
+}
+
+
+.mini-item:not(.selecionado) .icon-box i {
+    color: #999999;
+}
+
+
+.mini-item:not(.selecionado) span {
+    color: #999999;
+}
+
+
+.mini-item.selecionado .icon-box i,
+.mini-item.selecionado span {
+    color: var(--primary-green);
+}
+
+
+.mini-item.selecionado span {
+    font-weight: bold;
+}
+
+
+
+/* =========================
+   BOTÃO ACESSAR
+========================= */
+
+.link-botao {
+    text-decoration: none;
+}
+
+
+.btn-acessar {
+    padding: 12px 45px;
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -22px;
+
+    transform: translateX(-50%);
+
+    background-color: var(--primary-green);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(91, 176, 44, 0.3);
+
+    transition: 0.3s;
+}
+
+
+.btn-acessar:hover {
+    background-color: var(--primary-green-dark);
+
+    transform: translateX(-50%) translateY(-2px);
+}
+
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.main-footer {
+    margin-top: 80px;
+
+    padding: 50px 0 20px;
+
+    background-color: var(--primary-green);
+
+    color: white;
+}
+
+
+.footer-content {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 40px;
+}
+
+
+.footer-logo {
+    max-width: 130px;
+
+    max-height: 55px;
+
+    margin-bottom: 15px;
+
+    object-fit: contain;
+
+    filter: brightness(0) invert(1);
+}
+
+
+.footer-column p {
+    line-height: 1.5;
+}
+
+
+.footer-column h4 {
+    margin-bottom: 20px;
+
+    padding-bottom: 5px;
+
+    display: inline-block;
+
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+
+    font-size: 18px;
+}
+
+
+.footer-column ul {
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+
+.footer-column ul li a {
+    color: white;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    opacity: 0.8;
+
+    transition: 0.2s;
+}
+
+
+.footer-column ul li a:hover {
+    opacity: 1;
+}
+
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact-info p {
+    margin-bottom: 12px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    font-size: 14px;
+}
+
+
+.contact-info i {
+    margin-top: 3px;
+}
+
+
+
+/* =========================
+   REDES SOCIAIS
+========================= */
+
+.social-icons {
+    margin-top: 20px;
+
+    display: flex;
+
+    gap: 15px;
+}
+
+
+.social-icons a {
+    width: 32px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    color: var(--primary-green);
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+
+.social-icons a:hover {
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================
+   RODAPÉ INFERIOR
+========================= */
+
+.footer-bottom {
+    max-width: 1200px;
+
+    margin: 40px auto 0;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    text-align: center;
+
+    font-size: 12px;
+
+    opacity: 0.7;
+}
+
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .top-nav {
+        gap: 22px;
+    }
+
+
+    .user-profile span {
+        display: none;
+    }
+
+}
+
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    .container {
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+
+    .top-nav {
+        gap: 18px;
+    }
+
+
+    .dashboard-grid {
+        gap: 60px 30px;
+    }
+
+}
+
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 650px) {
+
+    .main-header {
+        height: 100px;
+
+        position: sticky;
+    }
+
+
+    .header-logo-img {
+        width: 75px;
+    }
+
+
+    .top-nav {
+        gap: 14px;
+    }
+
+
+    .nav-item {
+        font-size: 18px;
+    }
+
+
+    .user-profile span {
+        display: none;
+    }
+
+
+    .foto-home-box {
+        width: 30px;
+
+        height: 30px;
+    }
+
+
+    .foto-home-box img {
+        width: 30px;
+
+        height: 30px;
+    }
+
+
+    .foto-home-box i {
+        font-size: 29px;
+    }
+
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+
+        gap: 65px;
+    }
+
+
+    .conteudo-home {
+        padding-top: 35px;
+    }
+
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+
+    .mini-grid {
+        gap: 15px;
+    }
+
+
+    .icon-box {
+        width: 95px;
+
+        height: 95px;
+    }
+
+
+    .icon-box i {
+        font-size: 38px;
+    }
+
+}
+
+
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+@media (max-width: 450px) {
+
+    .container {
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+
+    .header-logo-img {
+        width: 65px;
+    }
+
+
+    .top-nav {
+        gap: 10px;
+    }
+
+
+    .nav-item {
+        font-size: 16px;
+    }
+
+
+    .foto-home-box {
+        width: 27px;
+
+        height: 27px;
+    }
+
+
+    .foto-home-box img {
+        width: 27px;
+
+        height: 27px;
+    }
+
+
+    .foto-home-box i {
+        font-size: 27px;
+    }
+
+
+    .card {
+        padding: 30px 20px;
+    }
+
+
+    .mini-grid {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 25px;
+    }
+
+}

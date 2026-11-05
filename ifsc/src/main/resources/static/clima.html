@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clima - Brainstorm Agrícola</title>
+
+<link rel="stylesheet" href="clima.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<a href="home.html" class="voltar">
+← Voltar
+</a>
+
+<h1>
+Condições Climáticas
+</h1>
+
+</header>
+
+
+
+<main>
+
+
+<div class="clima-container">
+
+
+<h2>
+Xanxerê - SC
+</h2>
+
+
+
+<!-- CLIMA ATUAL -->
+
+<div class="clima-principal">
+
+
+<div class="icone-clima">
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+24°C
+</h3>
+
+<p>
+Parcialmente nublado
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- PREVISÃO 7 DIAS -->
+
+
+<div class="previsao">
+
+
+<h2>
+Previsão dos próximos dias
+</h2>
+
+
+
+<div class="dias-previsao">
+
+
+
+<div class="dia-clima">
+
+<p>Hoje</p>
+
+<i class="fa-solid fa-sun"></i>
+
+<strong>24°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Ter</p>
+
+<i class="fa-solid fa-cloud-rain"></i>
+
+<strong>22°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Qua</p>
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+<strong>25°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Qui</p>
+
+<i class="fa-solid fa-sun"></i>
+
+<strong>27°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Sex</p>
+
+<i class="fa-solid fa-cloud-rain"></i>
+
+<strong>21°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Sáb</p>
+
+<i class="fa-solid fa-cloud"></i>
+
+<strong>23°</strong>
+
+</div>
+
+
+
+<div class="dia-clima">
+
+<p>Dom</p>
+
+<i class="fa-solid fa-sun"></i>
+
+<strong>26°</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- OPÇÕES CLIMA -->
+
+
+<div class="opcoes-clima">
+
+
+
+<div class="clima-opcao" onclick="mostrarDetalhes('vento')">
+
+<i class="fa-solid fa-wind"></i>
+
+<h4>Vento</h4>
+
+<p>12 km/h</p>
+
+</div>
+
+
+
+
+
+<div class="clima-opcao" onclick="mostrarDetalhes('orvalho')">
+
+<i class="fa-solid fa-droplet"></i>
+
+<h4>Ponto de orvalho</h4>
+
+<p>18°C</p>
+
+</div>
+
+
+
+
+
+<div class="clima-opcao" onclick="mostrarDetalhes('nascer')">
+
+<i class="fa-solid fa-sun"></i>
+
+<h4>Nascer do sol</h4>
+
+<p>06:20</p>
+
+</div>
+
+
+
+
+
+<div class="clima-opcao" onclick="mostrarDetalhes('por')">
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+<h4>Pôr do sol</h4>
+
+<p>18:10</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- DETALHES -->
+
+<div class="detalhes-box" id="detalhes">
+
+Clique em uma opção acima para ver detalhes.
+
+</div>
+
+
+
+
+</div>
+
+
+</main>
+
+
+
+<script src="clima.js"></script>
+
+
+</body>
+
+
+</html>

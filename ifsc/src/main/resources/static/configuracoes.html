@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Configurações - Brainstorm Agrícola</title>
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="configuracoes.css"
+    >
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="main-header">
+
+        <div class="container header-content">
+
+
+            <!-- LOGO -->
+            <div class="logo-wrapper">
+
+                <a href="home.html">
+
+                    <img
+                        src="Logo.png"
+                        alt="Brainstorm Agrícola"
+                        class="de header-logo-img"
+                    >
+
+                </a>
+
+            </div>
+
+
+            <!-- NAVEGAÇÃO -->
+            <nav class="top-nav">
+
+
+                <!-- HOME -->
+                <a
+                    href="home.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                </a>
+
+
+                <!-- BOLSA DE CHICAGO -->
+                <a
+                    href="bolsadechicago.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </a>
+
+
+                <!-- COMPARTILHAMENTO -->
+                <a
+                    href="compartilhamentofotos.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-comment-dots"></i>
+
+                </a>
+
+
+                <!-- CONFIGURAÇÕES -->
+                <a
+                    href="configuracoes.html"
+                    class="nav-item active"
+                >
+
+                    <i class="fa-solid fa-gear"></i>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- PERFIL -->
+            <a
+                href="editarperfil.html"
+                class="user-profile"
+            >
+
+                <span id="nomeUsuarioTopo">
+                    Olá, usuário!
+                </span>
+
+
+                <div class="foto-topo">
+
+                    <img
+                        id="fotoUsuarioTopo"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+
+                    <i
+                        id="iconeUsuarioTopo"
+                        class="fa-solid fa-circle-user"
+                    ></i>
+
+                </div>
+
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONFIGURAÇÕES
+    ========================== -->
+
+    <main class="pagina-configuracoes">
+
+
+        <!-- =========================
+             MENU PRINCIPAL
+        ========================== -->
+
+        <section
+            id="telaPrincipal"
+            class="painel-configuracao tela ativa"
+        >
+
+
+            <div class="titulo-pagina">
+
+
+                <a
+                    href="home.html"
+                    class="voltar"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Voltar
+
+                </a>
+
+
+                <h1>
+                    Configurações
+                </h1>
+
+
+            </div>
+
+
+
+            <div class="conteudo-configuracoes">
+
+
+                <!-- MINHA CONTA -->
+                <div class="coluna-configuracoes">
+
+
+                    <h2>
+                        Minha conta
+                    </h2>
+
+
+                    <!-- EDITAR PERFIL -->
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="abrirTela('perfil')"
+                    >
+
+                        <span>
+
+                            <i class="fa-regular fa-user"></i>
+
+                            Editar perfil
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+
+                    <!-- MUDAR SENHA -->
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="abrirTela('senha')"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Mudar senha
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+
+                    <!-- PRIVACIDADE -->
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="abrirTela('privacidade')"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            Privacidade e segurança
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- PREFERÊNCIAS -->
+                <div class="coluna-configuracoes">
+
+
+                    <h2>
+                        Preferências
+                    </h2>
+
+
+
+                    <!-- NOTIFICAÇÕES -->
+                    <div class="item-configuracao item-toggle">
+
+
+                        <span>
+
+                            <i class="fa-regular fa-bell"></i>
+
+                            Notificações push-up
+
+                        </span>
+
+
+                        <label class="interruptor">
+
+
+                            <input
+                                type="checkbox"
+                                id="notificacoes"
+                                checked
+                            >
+
+
+                            <span class="controle"></span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+
+                    <!-- MODO ESCURO -->
+                    <div class="item-configuracao item-toggle">
+
+
+                        <span>
+
+                            <i class="fa-regular fa-moon"></i>
+
+                            Modo escuro
+
+                        </span>
+
+
+                        <label class="interruptor">
+
+
+                            <input
+                                type="checkbox"
+                                id="modoEscuro"
+                            >
+
+
+                            <span class="controle"></span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+
+                    <!-- SOBRE -->
+                    <h2>
+                        Sobre o app
+                    </h2>
+
+
+
+                    <!-- TERMOS -->
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarTermos()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-file-contract"></i>
+
+                            Termos de uso
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+
+                    <!-- SUPORTE -->
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarSuporte()"
+                    >
+
+                        <span>
+
+                            <i class="fa-regular fa-comment"></i>
+
+                            Fale conosco / Suporte
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SAIR -->
+            <button
+                type="button"
+                class="botao-sair"
+                onclick="sairDaConta()"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Sair da conta
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             EDITAR PERFIL
+        ========================== -->
+
+        <section
+            id="telaPerfil"
+            class="painel-configuracao tela"
+        >
+
+
+            <div class="titulo-interno">
+
+
+                <button
+                    type="button"
+                    class="voltar-interno"
+                    onclick="voltarPrincipal()"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <h1>
+                    Editar perfil
+                </h1>
+
+
+            </div>
+
+
+
+            <div class="perfil-layout">
+
+
+                <!-- FOTO -->
+                <div class="area-foto">
+
+
+                    <div class="foto-perfil">
+
+
+                        <img
+                            id="fotoPerfil"
+                            src=""
+                            alt="Foto de perfil"
+                        >
+
+
+                        <i
+                            id="iconePerfil"
+                            class="fa-solid fa-user"
+                        ></i>
+
+
+                        <button
+                            type="button"
+                            class="botao-camera"
+                            onclick="abrirSeletorFoto()"
+                        >
+
+                            <i class="fa-solid fa-camera"></i>
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <input
+                        type="file"
+                        id="inputFoto"
+                        accept="image/*"
+                        hidden
+                    >
+
+
+                    <p>
+                        Editar foto de perfil
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- FORMULÁRIO -->
+                <form
+                    class="formulario-perfil"
+                    onsubmit="salvarPerfil(event)"
+                >
+
+
+                    <h2>
+                        Informações pessoais
+                    </h2>
+
+
+                    <input
+                        type="text"
+                        id="nomeCompleto"
+                        placeholder="Nome completo"
+                    >
+
+
+                    <input
+                        type="date"
+                        id="dataNascimento"
+                    >
+
+
+
+                    <select id="genero">
+
+
+                        <option value="">
+                            Gênero (opcional)
+                        </option>
+
+
+                        <option value="Feminino">
+                            Feminino
+                        </option>
+
+
+                        <option value="Masculino">
+                            Masculino
+                        </option>
+
+
+                        <option value="Outro">
+                            Outro
+                        </option>
+
+
+                        <option value="Prefiro não informar">
+                            Prefiro não informar
+                        </option>
+
+
+                    </select>
+
+
+
+                    <h2>
+                        Informações de contato
+                    </h2>
+
+
+
+                    <div class="campos-duplos">
+
+
+                        <input
+                            type="email"
+                            id="emailPerfil"
+                            placeholder="E-mail"
+                        >
+
+
+                        <input
+                            type="tel"
+                            id="telefonePerfil"
+                            placeholder="Telefone"
+                        >
+
+
+                    </div>
+
+
+
+                    <h2>
+                        Informações da fazenda
+                    </h2>
+
+
+                    <input
+                        type="text"
+                        id="localizacao"
+                        placeholder="Localização: Cidade/Estado"
+                    >
+
+
+                    <input
+                        type="text"
+                        id="cultivos"
+                        placeholder="Principal tipo de cultivo: Milho | Soja"
+                    >
+
+
+
+                    <button
+                        type="submit"
+                        class="botao-principal"
+                    >
+
+                        Salvar alterações
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             MUDAR SENHA
+        ========================== -->
+
+        <section
+            id="telaSenha"
+            class="painel-configuracao tela"
+        >
+
+
+            <div class="titulo-interno">
+
+
+                <button
+                    type="button"
+                    class="voltar-interno"
+                    onclick="voltarPrincipal()"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <h1>
+                    Mudar senha
+                </h1>
+
+
+            </div>
+
+
+
+            <form
+                class="formulario-central"
+                onsubmit="salvarNovaSenha(event)"
+            >
+
+
+                <!-- SENHA ATUAL -->
+                <div class="campo-com-icone">
+
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="senhaAtual"
+                        placeholder="Senha atual"
+                    >
+
+
+                </div>
+
+
+
+                <!-- NOVA SENHA -->
+                <div class="campo-com-icone">
+
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="novaSenha"
+                        placeholder="Nova senha"
+                    >
+
+
+                </div>
+
+
+
+                <!-- CONFIRMAR SENHA -->
+                <div class="campo-com-icone">
+
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="confirmarNovaSenha"
+                        placeholder="Confirmar nova senha"
+                    >
+
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="botao-principal"
+                >
+
+                    Salvar nova senha
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="link-recuperar"
+                    onclick="mostrarInstrucoes()"
+                >
+
+                    Esqueceu sua senha?
+
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             PRIVACIDADE
+        ========================== -->
+
+        <section
+            id="telaPrivacidade"
+            class="painel-configuracao tela"
+        >
+
+
+            <div class="titulo-interno">
+
+
+                <button
+                    type="button"
+                    class="voltar-interno"
+                    onclick="voltarPrincipal()"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <h1>
+                    Privacidade e segurança
+                </h1>
+
+
+            </div>
+
+
+
+            <div class="privacidade-layout">
+
+
+                <!-- SEGURANÇA -->
+                <div>
+
+
+                    <h2>
+                        Segurança
+                    </h2>
+
+
+
+                    <div class="item-configuracao item-toggle">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            Autenticação de 2 fatores
+
+                        </span>
+
+
+
+                        <label class="interruptor">
+
+
+                            <input
+                                type="checkbox"
+                                id="autenticacao"
+                            >
+
+
+                            <span class="controle"></span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarDispositivos()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-eye"></i>
+
+                            Dispositivos conectados
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- CONTROLE DE DADOS -->
+                <div>
+
+
+                    <h2>
+                        Controle de dados
+                    </h2>
+
+
+
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarPermissoes()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Permissões do aplicativo
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        class="item-configuracao excluir-item"
+                        onclick="excluirConta()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Excluir minha conta
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- INFORMAÇÕES LEGAIS -->
+                <div>
+
+
+                    <h2>
+                        Informações legais
+                    </h2>
+
+
+
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarTermos()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-file-contract"></i>
+
+                            Termos de uso
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        class="item-configuracao"
+                        onclick="mostrarPolitica()"
+                    >
+
+                        <span>
+
+                            <i class="fa-solid fa-file-shield"></i>
+
+                            Política de privacidade
+
+                        </span>
+
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         MODAL DE RECUPERAÇÃO
+    ========================== -->
+
+    <div
+        id="modalInstrucoes"
+        class="modal"
+    >
+
+
+        <div class="modal-conteudo">
+
+
+            <div class="icone-sucesso">
+
+                <i class="fa-solid fa-check"></i>
+
+            </div>
+
+
+
+            <h2>
+                Instruções enviadas!
+            </h2>
+
+
+
+            <p>
+                Verifique seu e-mail. Enviamos um link para
+                redefinir sua senha. Confira também a caixa de
+                entrada e spam.
+            </p>
+
+
+
+            <button
+                type="button"
+                class="botao-principal"
+                onclick="fecharModal()"
+            >
+
+                Voltar
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="reenviar"
+                onclick="mostrarMensagem('E-mail reenviado!')"
+            >
+
+                Não recebeu? Reenviar e-mail.
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MENSAGEM -->
+    <div
+        id="mensagem"
+        class="mensagem"
+    ></div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="configuracoes.js"></script>
+
+
+</body>
+
+</html>

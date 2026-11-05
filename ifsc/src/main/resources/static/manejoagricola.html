@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manejo - Brainstorm Agrícola</title>
+
+    <link rel="stylesheet" href="manejoagricola.css">
+    
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="header-interno">
+            <a href="home.html" class="back-link">← Voltar</a>
+
+            <h2>Recomendações de manejo agrícola</h2>
+        </div>
+
+   <div class="selecao-cultura">
+
+    <div class="cultura-card" onclick="selecionarCultura('Soja', this)">
+
+        <div class="icone-cultura">
+            <img
+                id="imgSoja"
+                src="iconesojaP.png"
+                alt="Ícone Soja"
+            >
+        </div>
+
+        <span>Soja</span>
+
+    </div>
+
+    <div class="cultura-card" onclick="selecionarCultura('Milho', this)">
+
+        <div class="icone-cultura">
+            <img
+                id="imgMilho"
+                src="iconemilhoP.png"
+                alt="Ícone Milho"
+            >
+        </div>
+
+        <span>Milho</span>
+
+    </div>
+
+</div>
+
+        <section class="info-manejo">
+
+            <div class="campo-info">
+                <label for="cultura">Nome da cultura:</label>
+
+                <input
+                    type="text"
+                    id="cultura"
+                    placeholder="Selecione uma cultura"
+                    readonly
+                >
+            </div>
+
+            <div class="campo-info">
+                <label for="estagio">Estágio da lavoura:</label>
+
+                <input
+                    type="text"
+                    id="estagio"
+                    placeholder="Ex: Germinação, Crescimento, Colheita"
+                >
+            </div>
+
+            <button type="button" onclick="gerarRecomendacao()">
+                Gerar recomendação
+            </button>
+
+            <div class="campo-info recomendacao-area">
+                <label>Recomendações:</label>
+
+                <div class="caixa-recomendacao" id="resultado">
+                    A recomendação aparecerá aqui.
+                </div>
+            </div>
+
+            <p class="data-atualizacao">
+                Atualizado em 26/06/2026
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="manejoagricola.js"></script>
+
+</body>
+
+</html>

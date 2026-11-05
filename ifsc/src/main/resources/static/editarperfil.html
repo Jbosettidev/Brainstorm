@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Editar Perfil - Brainstorm Agrícola</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="editarperfil.css">
+</head>
+
+<body>
+
+    <!-- FUNDO ESCURECIDO -->
+    <div class="fundo-site">
+
+        <header class="cabecalho-simulado">
+
+            <img
+                src="imagem png brainstorm.png"
+                alt="Brainstorm Agrícola"
+                class="logo"
+            >
+
+            <nav>
+                <i class="fa-solid fa-house ativo"></i>
+                <i class="fa-solid fa-chart-line"></i>
+                <i class="fa-solid fa-comment-dots"></i>
+                <i class="fa-solid fa-gear"></i>
+            </nav>
+
+            <div class="usuario-simulado">
+                <span>Olá, usuário!</span>
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
+
+        </header>
+
+        <main class="cards-simulados">
+
+            <div class="card-simulado">
+                <h3>Recomendações de manejo agrícola</h3>
+                <p>Orientações certas para sua lavoura.</p>
+                <button>Acessar</button>
+            </div>
+
+            <div class="card-simulado">
+                <h3>Compartilhamento de fotos</h3>
+                <p>Publique fotos das lavouras e resultados.</p>
+                <button>Acessar</button>
+            </div>
+
+            <div class="card-simulado">
+                <h3>Calendário e clima</h3>
+                <p>Veja as melhores condições para o plantio.</p>
+                <button>Acessar</button>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- PAINEL LATERAL -->
+    <aside class="painel-perfil">
+
+        <!-- TELA PRINCIPAL -->
+        <section id="menuPerfil" class="tela-perfil ativa">
+
+            <div class="topo-painel">
+
+                <a href="home.html" class="botao-voltar">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+                <h1>Editar perfil</h1>
+
+            </div>
+
+            <div class="foto-principal">
+
+                <div class="foto-container">
+
+                    <img
+                        id="fotoMenu"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+                    <i
+                        id="iconeMenu"
+                        class="fa-solid fa-user"
+                    ></i>
+
+                    <button
+                        type="button"
+                        class="botao-camera"
+                        onclick="abrirSeletorFoto()"
+                    >
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <input
+                type="file"
+                id="inputFoto"
+                accept="image/*"
+                hidden
+            >
+
+            <div class="lista-opcoes">
+
+                <button
+                    type="button"
+                    class="item-opcao"
+                    onclick="abrirTela('pessoais')"
+                >
+                    <span>Informações Pessoais</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="item-opcao"
+                    onclick="abrirTela('contato')"
+                >
+                    <span>Informações de Contato</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="item-opcao"
+                    onclick="abrirTela('seguranca')"
+                >
+                    <span>Segurança</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- INFORMAÇÕES PESSOAIS -->
+        <section id="telaPessoais" class="tela-perfil">
+
+            <div class="topo-painel">
+
+                <button
+                    type="button"
+                    class="botao-voltar"
+                    onclick="voltarMenu()"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <h1>
+                    Informações<br>
+                    Pessoais
+                </h1>
+
+            </div>
+
+            <div class="foto-secundaria">
+
+                <div class="foto-container foto-menor">
+
+                    <img
+                        id="fotoPessoais"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+                    <i
+                        id="iconePessoais"
+                        class="fa-solid fa-user"
+                    ></i>
+
+                    <button
+                        type="button"
+                        class="botao-camera camera-menor"
+                        onclick="abrirSeletorFoto()"
+                    >
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="texto-editar-foto"
+                    onclick="abrirSeletorFoto()"
+                >
+                    Editar foto de perfil
+                </button>
+
+            </div>
+
+            <form
+                class="formulario"
+                onsubmit="salvarInformacoesPessoais(event)"
+            >
+
+                <input
+                    type="text"
+                    id="nomeCompleto"
+                    placeholder="Nome completo"
+                >
+
+                <input
+                    type="date"
+                    id="dataNascimento"
+                    title="Data de nascimento"
+                >
+
+                <select id="genero">
+
+                    <option value="">
+                        Gênero (Opcional)
+                    </option>
+
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Outro">Outro</option>
+                    <option value="Prefiro não informar">
+                        Prefiro não informar
+                    </option>
+
+                </select>
+
+                <button type="submit" class="botao-salvar">
+                    Salvar
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- INFORMAÇÕES DE CONTATO -->
+        <section id="telaContato" class="tela-perfil">
+
+            <div class="topo-painel">
+
+                <button
+                    type="button"
+                    class="botao-voltar"
+                    onclick="voltarMenu()"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <h1>
+                    Informações de<br>
+                    Contato
+                </h1>
+
+            </div>
+
+            <form
+                class="formulario formulario-contato"
+                onsubmit="salvarContato(event)"
+            >
+
+                <input
+                    type="email"
+                    id="emailPerfil"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="tel"
+                    id="telefonePerfil"
+                    placeholder="Telefone"
+                >
+
+                <button type="submit" class="botao-salvar">
+                    Salvar
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- SEGURANÇA -->
+        <section id="telaSeguranca" class="tela-perfil">
+
+            <div class="topo-painel">
+
+                <button
+                    type="button"
+                    class="botao-voltar"
+                    onclick="voltarMenu()"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <h1>Segurança</h1>
+
+            </div>
+
+            <div class="seguranca-conteudo">
+
+                <form
+                    class="bloco-seguranca"
+                    onsubmit="alterarSenha(event)"
+                >
+
+                    <h2>Alterar Senha</h2>
+
+                    <input
+                        type="text"
+                        id="identificacaoSenha"
+                        placeholder="Email ou Telefone"
+                    >
+
+                    <input
+                        type="password"
+                        id="novaSenhaPerfil"
+                        placeholder="Nova Senha"
+                    >
+
+                    <button type="submit" class="botao-salvar">
+                        Salvar
+                    </button>
+
+                </form>
+
+                <form
+                    class="bloco-seguranca"
+                    onsubmit="excluirConta(event)"
+                >
+
+                    <h2>Excluir conta</h2>
+
+                    <input
+                        type="text"
+                        id="identificacaoExcluir"
+                        placeholder="Email ou Telefone"
+                    >
+
+                    <input
+                        type="password"
+                        id="senhaExcluir"
+                        placeholder="Senha"
+                    >
+
+                    <button
+                        type="submit"
+                        class="botao-excluir"
+                    >
+                        Excluir
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <div id="mensagemPerfil" class="mensagem-perfil"></div>
+
+    </aside>
+
+    <script src="editarperfil.js"></script>
+
+</body>
+
+</html>

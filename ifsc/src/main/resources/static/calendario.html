@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calendário de Plantio - Brainstorm Agrícola</title>
+
+<link rel="stylesheet" href="calendario.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a href="home.html" class="voltar">
+        ← Voltar
+    </a>
+
+    <h1>
+        Calendário de Plantio
+    </h1>
+
+</header>
+
+
+
+<main>
+
+
+<div class="container">
+
+
+    <h2>
+        Escolha a cultura
+    </h2>
+
+
+    <div class="culturas">
+
+
+        <button onclick="selecionarCultura('milho')">
+
+            🌽 Milho
+
+        </button>
+
+
+
+        <button onclick="selecionarCultura('soja')">
+
+            🌱 Soja
+
+        </button>
+
+
+    </div>
+
+
+
+    <div class="calendario">
+
+
+        <h2 id="tituloCultura">
+            Selecione uma cultura
+        </h2>
+
+
+        <div class="semana">
+
+    <span>Dom</span>
+    <span>Seg</span>
+    <span>Ter</span>
+    <span>Qua</span>
+    <span>Qui</span>
+    <span>Sex</span>
+    <span>Sáb</span>
+
+</div>
+
+
+<div class="dias" id="diasCalendario">
+
+
+</div>
+
+
+<div class="informacao" id="informacao">
+
+    <div class="info-topo">
+
+        <i class="fa-solid fa-seedling"></i>
+
+        <h3>Detalhes do plantio</h3>
+
+    </div>
+
+
+    <p>
+        Clique em uma data recomendada para visualizar as informações.
+    </p>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<script src="calendario.js"></script>
+
+
+</body>
+
+</html>

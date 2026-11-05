@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Compartilhamento de Fotos - Brainstorm Agrícola</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="compartilhamentofotos.css"
+    >
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="main-header">
+
+        <div class="container header-content">
+
+
+            <!-- LOGO -->
+            <div class="logo-wrapper">
+
+                <img
+                    src="Logo.png"
+                    alt="Brainstorm Agrícola"
+                    class="de header-logo-img"
+                >
+
+            </div>
+
+
+            <!-- MENU SUPERIOR -->
+            <nav class="top-nav">
+
+
+                <!-- HOME -->
+                <a
+                    href="home.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                </a>
+
+
+                <!-- BOLSA DE CHICAGO -->
+                <a
+                    href="bolsadechicago.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </a>
+
+
+                <!-- COMPARTILHAMENTO -->
+                <a
+                    href="compartilhamentofotos.html"
+                    class="nav-item active"
+                >
+
+                    <i class="fa-solid fa-comment-dots"></i>
+
+                </a>
+
+
+                <!-- CONFIGURAÇÕES -->
+                <a
+                    href="configuracoes.html"
+                    class="nav-item"
+                >
+
+                    <i class="fa-solid fa-gear"></i>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- PERFIL -->
+            <a
+                href="editarperfil.html"
+                class="user-profile"
+            >
+
+                <span id="nomeUsuarioHome">
+                    Olá, usuário!
+                </span>
+
+
+                <div class="foto-home-box">
+
+
+                    <img
+                        id="fotoUsuarioHome"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+
+                    <i
+                        id="iconeUsuarioHome"
+                        class="fa-solid fa-circle-user"
+                    ></i>
+
+
+                </div>
+
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main class="feed-container">
+
+
+        <!-- CRIAR PUBLICAÇÃO -->
+        <section class="caixa-publicacao">
+
+
+            <h1>
+                Compartilhamento de fotos
+            </h1>
+
+
+            <p class="descricao">
+                Compartilhe informações, fotos e experiências da sua lavoura.
+            </p>
+
+
+            <textarea
+                id="textoPublicacao"
+                placeholder="O que está acontecendo na sua lavoura?"
+            ></textarea>
+
+
+            <img
+                id="imagemPreview"
+                class="imagem-preview"
+                alt="Pré-visualização da publicação"
+            >
+
+
+            <div class="acoes-publicacao">
+
+
+                <input
+                    type="file"
+                    id="inputImagem"
+                    accept="image/*"
+                    hidden
+                >
+
+
+                <button
+                    type="button"
+                    class="botao botao-foto"
+                    id="botaoEscolherFoto"
+                >
+
+                    <i class="fa-solid fa-image"></i>
+
+                    Escolher foto
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="botao botao-publicar"
+                    id="botaoPublicar"
+                >
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Publicar
+
+                </button>
+
+
+            </div>
+
+
+            <p
+                id="mensagemPublicacao"
+                class="mensagem"
+            ></p>
+
+
+        </section>
+
+
+
+        <!-- PUBLICAÇÕES -->
+        <section class="area-postagens">
+
+
+            <h2>
+                Publicações
+            </h2>
+
+
+            <div id="listaPublicacoes"></div>
+
+
+            <div
+                id="semPublicacoes"
+                class="sem-publicacoes"
+            >
+
+                <i class="fa-regular fa-images"></i>
+
+                <p>
+                    Nenhuma publicação foi feita ainda.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="compartilhamentofotos.js"></script>
+
+
+</body>
+
+</html>

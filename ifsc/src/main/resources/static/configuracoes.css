@@ -1,0 +1,925 @@
+:root {
+    --verde: #56ad25;
+    --verde-escuro: #3f8c19;
+    --verde-claro: #c7e4b5;
+    --fundo: #f4f5f5;
+    --card: #eeeeee;
+    --branco: #ffffff;
+    --texto: #282828;
+    --borda: #dddddd;
+}
+
+
+/* =========================
+   GERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+/* =========================
+   CONTAINER DO CABEÇALHO
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.main-header {
+    width: 100%;
+    height: 120px;
+
+    background: var(--branco);
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid #eeeeee;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo-wrapper a {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.header-logo-img,
+.de {
+    width: 100px;
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================
+   MENU SUPERIOR
+========================= */
+
+.top-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #c9c9c9;
+
+    font-size: 20px;
+
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+.nav-item:hover {
+    color: var(--verde);
+    transform: translateY(-2px);
+}
+
+
+/* CONFIGURAÇÕES ATIVA */
+
+.nav-item.active {
+    color: var(--verde);
+}
+
+
+/* =========================
+   USUÁRIO
+========================= */
+
+.user-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--texto);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+.foto-topo {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+}
+
+.foto-topo img {
+    width: 34px;
+    height: 34px;
+
+    display: none;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+.foto-topo i {
+    color: var(--verde);
+
+    font-size: 32px;
+}
+
+
+/* =========================
+   ESTRUTURA DA PÁGINA
+========================= */
+
+.pagina-configuracoes {
+    width: min(1120px, calc(100% - 60px));
+
+    margin: 40px auto 80px;
+}
+
+.painel-configuracao {
+    padding: 38px 45px;
+
+    background: white;
+
+    border-radius: 27px;
+
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.tela {
+    display: none;
+}
+
+.tela.ativa {
+    display: block;
+
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.titulo-pagina {
+    margin-bottom: 36px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+}
+
+.titulo-pagina h1,
+.titulo-interno h1 {
+    font-size: 30px;
+
+    font-weight: 600;
+}
+
+.voltar {
+    color: var(--verde-escuro);
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   CONTEÚDO CONFIGURAÇÕES
+========================= */
+
+.conteudo-configuracoes {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 55px;
+}
+
+.coluna-configuracoes h2,
+.privacidade-layout h2 {
+    margin: 25px 0 15px;
+
+    color: var(--verde-escuro);
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   ITENS
+========================= */
+
+.item-configuracao {
+    width: 100%;
+
+    min-height: 58px;
+
+    margin-bottom: 14px;
+
+    padding: 0 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: var(--card);
+
+    color: var(--texto);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.item-configuracao:hover {
+    background: #e2e2e2;
+
+    transform: translateX(3px);
+}
+
+.item-configuracao span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.item-configuracao span i {
+    width: 20px;
+
+    color: #666666;
+
+    text-align: center;
+}
+
+.item-toggle {
+    cursor: default;
+}
+
+.item-toggle:hover {
+    transform: none;
+}
+
+
+/* =========================
+   INTERRUPTOR
+========================= */
+
+.interruptor {
+    position: relative;
+}
+
+.interruptor input {
+    display: none;
+}
+
+.controle {
+    width: 44px;
+
+    height: 24px;
+
+    display: block;
+
+    position: relative;
+
+    background: #aaaaaa;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.controle::after {
+    content: "";
+
+    width: 18px;
+    height: 18px;
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+.interruptor input:checked + .controle {
+    background: var(--verde);
+}
+
+.interruptor input:checked + .controle::after {
+    transform: translateX(20px);
+}
+
+
+/* =========================
+   BOTÃO SAIR
+========================= */
+
+.botao-sair {
+    min-width: 210px;
+
+    margin: 40px auto 0;
+
+    padding: 14px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border: none;
+
+    border-radius: 28px;
+
+    background: #93c977;
+
+    color: #111111;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   TELAS INTERNAS
+========================= */
+
+.titulo-interno {
+    margin-bottom: 35px;
+
+    display: grid;
+
+    grid-template-columns: 50px 1fr 50px;
+
+    align-items: center;
+}
+
+.titulo-interno h1 {
+    grid-column: 2;
+
+    text-align: center;
+}
+
+.voltar-interno {
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PERFIL
+========================= */
+
+.perfil-layout {
+    display: grid;
+
+    grid-template-columns: 260px 1fr;
+
+    gap: 55px;
+}
+
+.area-foto {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.foto-perfil {
+    width: 180px;
+
+    height: 180px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: visible;
+
+    background: var(--verde);
+
+    border: 8px solid #f4f4f4;
+
+    border-radius: 50%;
+}
+
+.foto-perfil img {
+    width: 100%;
+
+    height: 100%;
+
+    display: none;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+.foto-perfil > i {
+    color: #dddddd;
+
+    font-size: 125px;
+}
+
+.botao-camera {
+    width: 50px;
+
+    height: 50px;
+
+    position: absolute;
+
+    right: -2px;
+
+    bottom: -3px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(70, 70, 70, 0.78);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.area-foto p {
+    margin-top: 16px;
+}
+
+
+/* =========================
+   FORMULÁRIO PERFIL
+========================= */
+
+.formulario-perfil {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.formulario-perfil h2 {
+    margin-top: 8px;
+
+    color: var(--verde-escuro);
+
+    font-size: 19px;
+}
+
+.formulario-perfil input,
+.formulario-perfil select,
+.formulario-central input {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 16px;
+
+    border: 2px solid transparent;
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background: var(--verde-claro);
+}
+
+.formulario-perfil input:focus,
+.formulario-perfil select:focus,
+.formulario-central input:focus {
+    border-color: var(--verde);
+}
+
+.campos-duplos {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================
+   FORMULÁRIO CENTRAL
+========================= */
+
+.formulario-central {
+    width: min(450px, 100%);
+
+    margin: 30px auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.campo-com-icone {
+    position: relative;
+}
+
+.campo-com-icone > i {
+    position: absolute;
+
+    top: 50%;
+
+    left: 18px;
+
+    transform: translateY(-50%);
+}
+
+.campo-com-icone input {
+    padding-left: 50px;
+}
+
+
+/* =========================
+   BOTÃO PRINCIPAL
+========================= */
+
+.botao-principal {
+    min-width: 190px;
+
+    margin: 20px auto 0;
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 28px;
+
+    background: var(--verde);
+
+    color: #111111;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.botao-principal:hover {
+    background: var(--verde-escuro);
+
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.link-recuperar,
+.reenviar {
+    border: none;
+
+    background: transparent;
+
+    font-size: 13px;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PRIVACIDADE
+========================= */
+
+.privacidade-layout {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+.excluir-item {
+    color: #a33434;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    z-index: 1000;
+}
+
+.modal.ativo {
+    display: flex;
+}
+
+.modal-conteudo {
+    width: min(430px, calc(100% - 40px));
+
+    padding: 38px;
+
+    background: white;
+
+    border-radius: 26px;
+
+    text-align: center;
+}
+
+.icone-sucesso {
+    width: 75px;
+
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #45c84c;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 38px;
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 18px;
+
+    font-size: 26px;
+}
+
+.modal-conteudo p {
+    color: #555555;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.mensagem {
+    padding: 13px 22px;
+
+    position: fixed;
+
+    right: 30px;
+
+    bottom: 25px;
+
+    border-radius: 12px;
+
+    background: #398b1c;
+
+    color: white;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition: 0.3s;
+}
+
+.mensagem.mostrar {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================
+   MODO ESCURO
+========================= */
+
+body.modo-escuro {
+    --fundo: #181818;
+    --branco: #252525;
+    --card: #343434;
+    --texto: #eeeeee;
+    --borda: #444444;
+}
+
+body.modo-escuro .main-header,
+body.modo-escuro .painel-configuracao {
+    background: var(--branco);
+}
+
+body.modo-escuro .item-configuracao {
+    color: var(--texto);
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+
+    .conteudo-configuracoes,
+    .perfil-layout,
+    .privacidade-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .top-nav {
+        gap: 20px;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .main-header {
+        height: 100px;
+    }
+
+    .header-logo-img,
+    .de {
+        width: 75px;
+    }
+
+    #nomeUsuarioTopo {
+        display: none;
+    }
+
+    .top-nav {
+        gap: 14px;
+    }
+
+    .nav-item {
+        font-size: 18px;
+    }
+
+    .pagina-configuracoes {
+        width: calc(100% - 30px);
+    }
+
+    .painel-configuracao {
+        padding: 25px 20px;
+    }
+
+    .campos-duplos {
+        grid-template-columns: 1fr;
+    }
+
+}

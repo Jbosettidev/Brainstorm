@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brainstorm Agrícola</title>
+
+    <!-- Fonte -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+    >
+
+    <!-- Ícones -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styletelainicial.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+ <img
+    src="imagem png brainstorm.png"
+    alt="Logo Brainstorm Agrícola"
+    class="logo"
+>
+
+        <!-- ONBOARDING -->
+        <section id="onboarding" class="painel">
+
+            <h1 class="titulo">
+                Bem-vindo ao<br>
+                Brainstorm Agrícola!
+            </h1>
+
+            <!-- TELA 1 -->
+            <div class="tela ativa">
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-leaf"></i>
+
+                    <p>
+                        Aprimore suas lavouras com orientações
+                        precisas e acessíveis.
+                    </p>
+                </div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <p>
+                        Receba recomendações personalizadas
+                        de manejo agrícola.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- TELA 2 -->
+            <div class="tela">
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-comments"></i>
+
+                    <p>
+                        Participe de uma comunidade interativa
+                        de agricultores.
+                    </p>
+                </div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-handshake"></i>
+
+                    <p>
+                        Compartilhe experiências e aprenda
+                        com outros produtores.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- TELA 3 -->
+            <div class="tela">
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+
+                    <p>
+                        Utilize uma ferramenta simples e
+                        intuitiva, feita para o campo.
+                    </p>
+                </div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-earth-americas"></i>
+
+                    <p>
+                        Promova a sustentabilidade e o
+                        desenvolvimento rural.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- TELA 4 -->
+            <div class="tela">
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <p>
+                        Valorize o conhecimento coletivo
+                        e inove no seu cultivo.
+                    </p>
+                </div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-gear"></i>
+
+                    <p>
+                        Tecnologia ao alcance de todos,
+                        impulsionando o agronegócio.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="bolinhas" aria-label="Progresso das telas">
+                <span class="ativo"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <button
+                type="button"
+                class="botao-principal"
+                id="btnAvancar"
+                onclick="proximaTela()"
+            >
+                Avançar
+            </button>
+
+        </section>
+
+        <!-- LOGIN -->
+        <section id="login" class="painel formulario" hidden>
+
+            <h2>Faça seu login</h2>
+
+            <input
+                type="text"
+                id="usuario"
+                placeholder="E-mail ou usuário"
+                autocomplete="username"
+            >
+
+            <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                autocomplete="current-password"
+            >
+
+            <button
+                type="button"
+                class="botao-principal"
+                onclick="entrar()"
+            >
+                Entrar
+            </button>
+
+            <p class="link-simples">
+                <a href="#" onclick="mostrarRecuperar(event)">
+                    Esqueci minha senha
+                </a>
+            </p>
+
+            <p class="texto-conta">
+                Ainda não tem conta?<br>
+
+                <a href="#" onclick="mostrarCadastro(event)">
+                    Faça seu cadastro
+                </a>
+            </p>
+
+        </section>
+
+        <!-- CADASTRO -->
+        <section id="cadastro" class="painel formulario" hidden>
+
+            <h2>Crie sua conta</h2>
+
+            <input
+                type="text"
+                id="nome"
+                placeholder="Nome completo"
+                autocomplete="name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="E-mail"
+                autocomplete="email"
+            >
+
+            <input
+                type="text"
+                id="novoUsuario"
+                placeholder="Usuário"
+                autocomplete="username"
+            >
+
+            <input
+                type="password"
+                id="novaSenha"
+                placeholder="Senha"
+                autocomplete="new-password"
+            >
+
+            <input
+                type="password"
+                id="confirmarSenha"
+                placeholder="Confirmar senha"
+                autocomplete="new-password"
+            >
+
+            <button
+                type="button"
+                class="botao-principal"
+                onclick="cadastrar()"
+            >
+                Cadastrar
+            </button>
+
+            <p class="texto-conta">
+                Já tem uma conta?<br>
+
+                <a href="#" onclick="voltarLogin(event)">
+                    Voltar para o login
+                </a>
+            </p>
+
+        </section>
+
+        <!-- RECUPERAR SENHA -->
+        <section id="recuperar" class="painel formulario" hidden>
+
+            <h2>Recuperar sua senha</h2>
+
+            <p class="descricao">
+                Informe seu e-mail ou telefone para redefinir sua senha.
+            </p>
+
+            <input
+                type="text"
+                id="contatoRecuperacao"
+                placeholder="E-mail ou telefone"
+            >
+
+            <button
+                type="button"
+                class="botao-principal"
+                onclick="enviarRecuperacao()"
+            >
+                Enviar
+            </button>
+
+            <p class="texto-conta">
+                Já tem conta?
+
+                <a href="#" onclick="voltarLogin(event)">
+                    Faça login
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- Mensagem -->
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="telainicial.js"></script>
+
+</body>
+
+</html>

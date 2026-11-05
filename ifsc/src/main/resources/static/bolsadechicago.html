@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brainstorm Agrícola - Bolsa de Chicago</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="bolsadechicago.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="main-header">
+
+        <div class="container header-content">
+
+            <!-- LOGO -->
+            <div class="logo-wrapper">
+
+                <img
+                    src="Logo.png"
+                    alt="Brainstorm Agrícola"
+                    class="de header-logo-img"
+                >
+
+            </div>
+
+
+            <!-- MENU SUPERIOR -->
+            <nav class="top-nav">
+
+                <!-- HOME -->
+                <a
+                    href="home.html"
+                    class="nav-item"
+                >
+                    <i class="fa-solid fa-house"></i>
+                </a>
+
+
+                <!-- BOLSA DE CHICAGO -->
+                <a
+                    href="bolsadechicago.html"
+                    class="nav-item active"
+                >
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+
+
+                <!-- COMUNIDADE -->
+                <a
+                    href="compartilhamentofotos.html"
+                    class="nav-item"
+                >
+                    <i class="fa-solid fa-comment-dots"></i>
+                </a>
+
+
+                <!-- CONFIGURAÇÕES -->
+                <a
+                    href="configuracoes.html"
+                    class="nav-item"
+                >
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+
+            </nav>
+
+
+            <!-- PERFIL -->
+            <a
+                href="editarperfil.html"
+                class="user-profile"
+            >
+
+                <span id="nomeUsuarioHome">
+                    Olá, usuário!
+                </span>
+
+                <div class="foto-home-box">
+
+                    <img
+                        id="fotoUsuarioHome"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+                    <i
+                        id="iconeUsuarioHome"
+                        class="fa-solid fa-circle-user"
+                    ></i>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main class="container">
+
+        <section class="bolsa-container">
+
+
+            <!-- TÍTULO -->
+            <div class="page-title">
+
+                <div>
+
+                    <h1>
+                        Bolsa de Chicago
+                    </h1>
+
+                    <p>
+                        Acompanhe as cotações da soja e do milho.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARDS -->
+            <section class="cards">
+
+
+                <!-- SOJA -->
+                <div
+                    class="market-card cardsoja"
+                    id="card-soja"
+                >
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="produto-label">
+                                Commodity
+                            </span>
+
+                            <h2>
+                                Soja
+                            </h2>
+
+                        </div>
+
+
+                        <span
+                            class="variacao"
+                            id="soja-var"
+                        >
+                            --
+                        </span>
+
+
+                    </div>
+
+
+                    <p
+                        class="preco"
+                        id="soja-preco"
+                    >
+                        Carregando...
+                    </p>
+
+
+                    <div class="card-footer">
+
+
+                        <small>
+
+                            Fechamento:
+                            <span id="soja-fechamento">
+                                --
+                            </span>
+
+                        </small>
+
+
+                        <small>
+                            Saca de 60 kg
+                        </small>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MILHO -->
+                <div
+                    class="market-card cardmilho"
+                    id="card-milho"
+                >
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="produto-label">
+                                Commodity
+                            </span>
+
+                            <h2>
+                                Milho
+                            </h2>
+
+                        </div>
+
+
+                        <span
+                            class="variacao"
+                            id="milho-var"
+                        >
+                            --
+                        </span>
+
+
+                    </div>
+
+
+                    <p
+                        class="preco"
+                        id="milho-preco"
+                    >
+                        Carregando...
+                    </p>
+
+
+                    <div class="card-footer">
+
+
+                        <small>
+
+                            Fechamento:
+                            <span id="milho-fechamento">
+                                --
+                            </span>
+
+                        </small>
+
+
+                        <small>
+                            Saca de 60 kg
+                        </small>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 ANÁLISE
+            ========================== -->
+
+            <section class="analise-container">
+
+
+                <!-- TENDÊNCIA -->
+                <div class="analise-box">
+
+
+                    <div class="analise-icon">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Tendência
+                        </h3>
+
+                        <p id="tendencia-texto">
+                            Analisando mercado...
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- IMPACTO -->
+                <div class="analise-box">
+
+
+                    <div class="analise-icon">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Impacto
+                        </h3>
+
+                        <p id="impacto-texto">
+                            Aguardando dados...
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

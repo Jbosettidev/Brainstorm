@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.header-interno {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.header-interno h2 {
+    font-size: 25px;
+}
+
+.back-link {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* SELEÇÃO DAS CULTURAS */
+
+.selecao-cultura {
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+
+    margin: 30px 0 45px;
+}
+
+.cultura-card {
+    width: 190px;
+    min-height: 245px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #fafafa;
+    border: 2px solid transparent;
+    border-radius: 20px;
+
+    text-align: center;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.cultura-card:hover {
+    border-color: #5ba727;
+    transform: translateY(-4px);
+}
+
+.icone-cultura {
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f3f3;
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+.icone-cultura img {
+    width: 105px;
+    height: 105px;
+
+    display: block;
+    object-fit: contain;
+
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+
+.cultura-card span {
+    margin-top: 18px;
+
+    color: #555;
+    font-size: 22px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+/* CULTURA SELECIONADA */
+
+.cultura-card.selecionada {
+    background: #f1f8e9;
+    border-color: #5ba727;
+}
+
+.cultura-card.selecionada .icone-cultura {
+    background: #edf7e7;
+}
+
+.cultura-card.selecionada span {
+    color: #5ba727;
+}
+
+/* CAMPOS */
+
+.campo-info {
+    margin-bottom: 20px;
+}
+
+.recomendacao-area {
+    margin-top: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    font-size: 15px;
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #5ba727;
+    box-shadow: 0 0 0 3px rgba(91, 167, 39, 0.12);
+}
+
+input[readonly] {
+    background: #f7f7f7;
+}
+
+/* RECOMENDAÇÃO */
+
+.caixa-recomendacao {
+    min-height: 90px;
+    padding: 18px;
+
+    background: #f1f8e9;
+    border-left: 5px solid #5ba727;
+    border-radius: 10px;
+
+    line-height: 1.6;
+}
+
+/* BOTÃO */
+
+button {
+    padding: 13px 24px;
+
+    background: #5ba727;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #478a20;
+    transform: translateY(-1px);
+}
+
+.data-atualizacao {
+    margin-top: 22px;
+
+    color: gray;
+    font-size: 14px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 650px) {
+    .container {
+        width: 92%;
+        padding: 22px;
+    }
+
+    .selecao-cultura {
+        gap: 20px;
+    }
+
+    .cultura-card {
+        width: 145px;
+        min-height: 200px;
+    }
+
+    .icone-cultura {
+        width: 115px;
+        height: 115px;
+    }
+
+    .icone-cultura img {
+        width: 82px;
+        height: 82px;
+    }
+
+    .cultura-card span {
+        font-size: 18px;
+    }
+}

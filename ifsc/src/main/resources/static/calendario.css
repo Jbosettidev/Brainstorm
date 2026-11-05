@@ -1,0 +1,464 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    font-family: 'Roboto', Arial, sans-serif;
+
+    background:#f3f5f4;
+
+    color:#333;
+
+}
+
+
+/* CABEÇALHO */
+
+header{
+
+    background:white;
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 60px;
+
+    gap:30px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+
+}
+
+
+
+.voltar{
+
+    text-decoration:none;
+
+    color:#5da02a;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+}
+
+
+
+header h1{
+
+    font-size:26px;
+
+    font-weight:600;
+
+}
+
+
+
+/* CONTEÚDO */
+
+.container{
+
+
+    width:900px;
+
+
+    margin:40px auto;
+
+
+    background:white;
+
+
+    padding:40px;
+
+
+    border-radius:30px;
+
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+
+}
+
+
+
+.container h2{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    color:#333;
+
+}
+
+
+
+
+/* ESCOLHA CULTURA */
+
+
+.culturas{
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+
+}
+
+
+
+.culturas button{
+
+
+    width:180px;
+
+
+    height:60px;
+
+
+    border:none;
+
+
+    border-radius:20px;
+
+
+    background:#eeeeee;
+
+
+    color:#555;
+
+
+    font-size:18px;
+
+
+    font-weight:bold;
+
+
+    cursor:pointer;
+
+
+    transition:0.3s;
+
+
+}
+
+
+
+.culturas button:hover{
+
+
+    background:#5da02a;
+
+    color:white;
+
+
+}
+
+
+
+
+/* CALENDÁRIO */
+
+
+.calendario{
+
+
+    background:#f7f8f7;
+
+
+    padding:30px;
+
+
+    border-radius:25px;
+
+
+}
+
+
+
+#tituloCultura{
+
+
+    color:#5da02a;
+
+    font-size:22px;
+
+}
+
+
+
+.semana{
+
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.semana span{
+
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:#777;
+
+
+}
+
+
+
+
+.dias{
+
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:18px;
+
+
+}
+
+
+
+
+.dia{
+
+
+    width:55px;
+
+    height:55px;
+
+
+    background:#e5e5e5;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    margin:auto;
+
+
+    font-weight:bold;
+
+
+    color:#666;
+
+
+    transition:0.3s;
+
+
+}
+
+
+
+
+.dia:hover{
+
+
+    transform:scale(1.1);
+
+
+}
+
+
+
+/* DIAS FAVORÁVEIS */
+
+
+.recomendado{
+
+
+    background:#5da02a;
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+    box-shadow:0 5px 12px rgba(93,160,42,0.35);
+
+
+}
+
+
+
+.recomendado:hover{
+
+
+    background:#4d8c22;
+
+
+}
+
+
+
+/* INFORMAÇÃO DO DIA */
+
+
+.informacao{
+
+
+    margin-top:35px;
+
+
+    background:white;
+
+
+    border-radius:25px;
+
+
+    padding:25px;
+
+
+    box-shadow:0 5px 18px rgba(0,0,0,0.08);
+
+
+    border-left:6px solid #5da02a;
+
+
+}
+
+
+
+.info-topo{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.info-topo i{
+
+
+    background:#5da02a;
+
+
+    color:white;
+
+
+    width:45px;
+
+
+    height:45px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    font-size:22px;
+
+
+}
+
+
+
+.info-topo h3{
+
+
+    font-size:22px;
+
+
+    color:#333;
+
+
+}
+
+
+
+.informacao p{
+
+
+    color:#555;
+
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:950px){
+
+
+.container{
+
+    width:90%;
+
+}
+
+
+.dias{
+
+    gap:10px;
+
+}
+
+
+.dia{
+
+    width:42px;
+
+    height:42px;
+
+}
+
+
+}

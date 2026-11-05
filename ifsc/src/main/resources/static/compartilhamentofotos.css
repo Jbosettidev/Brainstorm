@@ -1,0 +1,704 @@
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root {
+    --verde: #5ba727;
+    --verde-escuro: #478a20;
+    --verde-claro: #f1f8e9;
+    --cinza-fundo: #f3f5f4;
+    --cinza-card: #f7f7f7;
+    --borda: #e1e1e1;
+    --texto: #333333;
+    --branco: #ffffff;
+}
+
+
+/* =========================
+   GERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: var(--cinza-fundo);
+
+    color: var(--texto);
+
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* MESMO CONTAINER DO HOME */
+
+.container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+    box-sizing: border-box;
+}
+
+
+
+/* =========================
+   HEADER
+========================= */
+
+.main-header {
+    width: 100%;
+
+    height: 120px;
+
+    background: var(--branco);
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+
+.header-content {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+
+.header-logo-img,
+.de {
+    width: 100px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+
+/* =========================
+   MENU SUPERIOR
+========================= */
+
+.top-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #c9c9c9;
+
+    font-size: 20px;
+
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+
+.nav-item:hover {
+    color: var(--verde);
+
+    transform: translateY(-2px);
+}
+
+
+/* Página atual */
+
+.nav-item.active {
+    color: var(--verde);
+}
+
+
+
+/* =========================
+   PERFIL
+========================= */
+
+.user-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #111;
+
+    font-size: 13px;
+
+    text-decoration: none;
+}
+
+
+.foto-home-box {
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+#fotoUsuarioHome {
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+
+#iconeUsuarioHome {
+    color: var(--verde);
+
+    font-size: 32px;
+}
+
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.feed-container {
+    width: min(760px, calc(100% - 40px));
+
+    margin: 35px auto 70px;
+}
+
+
+.caixa-publicacao,
+.postagem {
+    background: var(--branco);
+
+    border-radius: 22px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+
+.caixa-publicacao {
+    padding: 28px;
+
+    margin-bottom: 35px;
+}
+
+
+.caixa-publicacao h1 {
+    margin-bottom: 8px;
+
+    font-size: 27px;
+}
+
+
+.descricao {
+    margin-bottom: 24px;
+
+    color: #666666;
+}
+
+
+
+/* =========================
+   TEXTO DA PUBLICAÇÃO
+========================= */
+
+textarea {
+    width: 100%;
+
+    min-height: 110px;
+
+    padding: 15px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    resize: vertical;
+
+    font: inherit;
+
+    transition: 0.2s;
+}
+
+
+textarea:focus {
+    border-color: var(--verde);
+
+    box-shadow: 0 0 0 3px rgba(91, 167, 39, 0.12);
+}
+
+
+
+/* =========================
+   PREVIEW
+========================= */
+
+.imagem-preview {
+    width: 100%;
+
+    max-height: 420px;
+
+    margin-top: 18px;
+
+    display: none;
+
+    object-fit: contain;
+
+    background: #f4f4f4;
+
+    border-radius: 15px;
+}
+
+
+
+/* =========================
+   BOTÕES DA PUBLICAÇÃO
+========================= */
+
+.acoes-publicacao {
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.botao {
+    padding: 12px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.botao-foto {
+    background: #eeeeee;
+
+    color: #444444;
+}
+
+
+.botao-foto:hover {
+    background: #dddddd;
+}
+
+
+.botao-publicar {
+    background: var(--verde);
+
+    color: white;
+}
+
+
+.botao-publicar:hover {
+    background: var(--verde-escuro);
+
+    transform: translateY(-1px);
+}
+
+
+.mensagem {
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    color: #bd3737;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   PUBLICAÇÕES
+========================= */
+
+.area-postagens h2 {
+    margin-bottom: 20px;
+
+    font-size: 23px;
+}
+
+
+.postagem {
+    margin-bottom: 25px;
+
+    overflow: hidden;
+}
+
+
+.postagem-cabecalho {
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.dados-usuario {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.dados-usuario i {
+    color: var(--verde);
+
+    font-size: 38px;
+}
+
+
+.nome-usuario {
+    display: block;
+
+    font-weight: 600;
+}
+
+
+.data-publicacao {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #777777;
+
+    font-size: 12px;
+}
+
+
+.texto-postagem {
+    padding: 0 18px 18px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+.imagem-postagem {
+    width: 100%;
+
+    max-height: 550px;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: #f2f2f2;
+}
+
+
+
+/* =========================
+   AÇÕES DA POSTAGEM
+========================= */
+
+.acoes-postagem {
+    padding: 9px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.acao {
+    padding: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #555555;
+
+    font: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.acao:hover {
+    background: #f0f0f0;
+}
+
+
+.acao.curtido {
+    color: var(--verde);
+}
+
+
+.acao-excluir {
+    color: #b33a3a;
+}
+
+
+.acao-excluir:hover {
+    background: #fdeaea;
+
+    color: #8f2020;
+}
+
+
+
+/* =========================
+   COMENTÁRIOS
+========================= */
+
+.comentarios {
+    padding: 16px 18px 20px;
+
+    border-top: 1px solid var(--borda);
+}
+
+
+.novo-comentario {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.campo-comentario {
+    flex: 1;
+
+    padding: 11px 13px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 22px;
+
+    outline: none;
+
+    font: inherit;
+}
+
+
+.campo-comentario:focus {
+    border-color: var(--verde);
+}
+
+
+.botao-comentar {
+    width: 44px;
+
+    height: 44px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--verde);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.lista-comentarios {
+    margin-top: 14px;
+}
+
+
+.comentario {
+    margin-top: 8px;
+
+    padding: 10px 13px;
+
+    background: #f0f2f1;
+
+    border-radius: 13px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+.comentario strong {
+    margin-right: 5px;
+}
+
+
+
+/* =========================
+   SEM PUBLICAÇÕES
+========================= */
+
+.sem-publicacoes {
+    padding: 45px 20px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    color: #777777;
+
+    text-align: center;
+}
+
+
+.sem-publicacoes i {
+    margin-bottom: 14px;
+
+    font-size: 45px;
+
+    color: var(--verde);
+}
+
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+
+    .container {
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+
+    .top-nav {
+        gap: 18px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .main-header {
+        height: 100px;
+    }
+
+
+    .header-logo-img,
+    .de {
+        width: 75px;
+    }
+
+
+    #nomeUsuarioHome {
+        display: none;
+    }
+
+
+    .top-nav {
+        gap: 14px;
+    }
+
+
+    .nav-item {
+        font-size: 18px;
+    }
+
+
+    .acoes-publicacao {
+        flex-direction: column;
+    }
+
+
+    .botao {
+        width: 100%;
+    }
+
+
+    .acoes-postagem {
+        grid-template-columns: 1fr;
+    }
+
+}
