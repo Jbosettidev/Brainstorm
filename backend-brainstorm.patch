@@ -1,0 +1,639 @@
+diff --git a/pom.xml b/pom.xml
+index 44c0415..0ed2a35 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -38,6 +38,10 @@
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-webmvc</artifactId>
+ 		</dependency>
++		<dependency>
++			<groupId>org.springframework.security</groupId>
++			<artifactId>spring-security-crypto</artifactId>
++		</dependency>
+ 
+ 		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+diff --git a/src/main/java/com/ti/ifsc/config/CotacaoSeeder.java b/src/main/java/com/ti/ifsc/config/CotacaoSeeder.java
+new file mode 100644
+index 0000000..83d91df
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/config/CotacaoSeeder.java
+@@ -0,0 +1,42 @@
++package com.ti.ifsc.config;
++
++import java.math.BigDecimal;
++import java.time.LocalDate;
++import java.util.List;
++
++import org.springframework.boot.CommandLineRunner;
++import org.springframework.stereotype.Component;
++
++import com.ti.ifsc.model.Cotacao;
++import com.ti.ifsc.repository.CotacaoRepository;
++
++/**
++ * Popula a tabela de cotações com DADOS DE DEMONSTRAÇÃO na primeira execução,
++ * para a tela da Bolsa de Chicago ter o que mostrar. Não são preços reais.
++ */
++@Component
++public class CotacaoSeeder implements CommandLineRunner {
++
++	private final CotacaoRepository cotacoes;
++
++	public CotacaoSeeder(CotacaoRepository cotacoes) {
++		this.cotacoes = cotacoes;
++	}
++
++	@Override
++	public void run(String... args) {
++		if (cotacoes.count() > 0) {
++			return;
++		}
++
++		LocalDate hoje = LocalDate.now();
++
++		cotacoes.saveAll(List.of(
++				new Cotacao("soja", new BigDecimal("128.40"), new BigDecimal("0.85"), hoje,
++						"Dados de demonstração: soja em leve alta e milho em leve queda.",
++						"Dados de demonstração: nenhuma fonte de cotações real foi integrada ainda."),
++				new Cotacao("milho", new BigDecimal("61.75"), new BigDecimal("-0.32"), hoje,
++						"Dados de demonstração: soja em leve alta e milho em leve queda.",
++						"Dados de demonstração: nenhuma fonte de cotações real foi integrada ainda.")));
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/controller/AuthController.java b/src/main/java/com/ti/ifsc/controller/AuthController.java
+new file mode 100644
+index 0000000..d7ce4d3
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/controller/AuthController.java
+@@ -0,0 +1,44 @@
++package com.ti.ifsc.controller;
++
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestBody;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++import com.ti.ifsc.dto.CadastroRequest;
++import com.ti.ifsc.dto.LoginRequest;
++import com.ti.ifsc.dto.LoginResponse;
++import com.ti.ifsc.dto.MensagemResponse;
++import com.ti.ifsc.dto.RecuperarSenhaRequest;
++import com.ti.ifsc.service.AuthService;
++
++@RestController
++@RequestMapping("/api")
++public class AuthController {
++
++	private final AuthService authService;
++
++	public AuthController(AuthService authService) {
++		this.authService = authService;
++	}
++
++	@PostMapping("/cadastro")
++	public ResponseEntity<MensagemResponse> cadastrar(@RequestBody CadastroRequest req) {
++		authService.cadastrar(req);
++		return ResponseEntity.status(HttpStatus.CREATED)
++				.body(new MensagemResponse("Cadastro realizado com sucesso!"));
++	}
++
++	@PostMapping("/login")
++	public LoginResponse login(@RequestBody LoginRequest req) {
++		return authService.login(req);
++	}
++
++	@PostMapping("/recuperar-senha")
++	public MensagemResponse recuperarSenha(@RequestBody RecuperarSenhaRequest req) {
++		authService.recuperarSenha(req);
++		return new MensagemResponse("Se o contato estiver cadastrado, você receberá as instruções de recuperação.");
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/controller/CotacaoController.java b/src/main/java/com/ti/ifsc/controller/CotacaoController.java
+new file mode 100644
+index 0000000..25b43dd
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/controller/CotacaoController.java
+@@ -0,0 +1,37 @@
++package com.ti.ifsc.controller;
++
++import java.util.List;
++import java.util.Locale;
++
++import org.springframework.http.HttpStatus;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.PathVariable;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++import com.ti.ifsc.dto.CotacaoResponse;
++import com.ti.ifsc.exception.ApiException;
++import com.ti.ifsc.repository.CotacaoRepository;
++
++@RestController
++@RequestMapping("/api/cotacoes")
++public class CotacaoController {
++
++	private final CotacaoRepository cotacoes;
++
++	public CotacaoController(CotacaoRepository cotacoes) {
++		this.cotacoes = cotacoes;
++	}
++
++	@GetMapping
++	public List<CotacaoResponse> listar() {
++		return cotacoes.findAllByOrderByCulturaAsc().stream().map(CotacaoResponse::from).toList();
++	}
++
++	@GetMapping("/{cultura}")
++	public CotacaoResponse buscar(@PathVariable String cultura) {
++		return cotacoes.findByCultura(cultura.toLowerCase(Locale.ROOT))
++				.map(CotacaoResponse::from)
++				.orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Cotação não encontrada!"));
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/CadastroRequest.java b/src/main/java/com/ti/ifsc/dto/CadastroRequest.java
+new file mode 100644
+index 0000000..86c1ab1
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/CadastroRequest.java
+@@ -0,0 +1,4 @@
++package com.ti.ifsc.dto;
++
++public record CadastroRequest(String nome, String email, String usuario, String senha, String confirmarSenha) {
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/CotacaoResponse.java b/src/main/java/com/ti/ifsc/dto/CotacaoResponse.java
+new file mode 100644
+index 0000000..59cb9a7
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/CotacaoResponse.java
+@@ -0,0 +1,14 @@
++package com.ti.ifsc.dto;
++
++import java.math.BigDecimal;
++
++import com.ti.ifsc.model.Cotacao;
++
++public record CotacaoResponse(String cultura, BigDecimal preco, BigDecimal variacao, String fechamento,
++		String tendencia, String impacto) {
++
++	public static CotacaoResponse from(Cotacao c) {
++		return new CotacaoResponse(c.getCultura(), c.getPreco(), c.getVariacao(), c.getFechamento().toString(),
++				c.getTendencia(), c.getImpacto());
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/LoginRequest.java b/src/main/java/com/ti/ifsc/dto/LoginRequest.java
+new file mode 100644
+index 0000000..21a95c3
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/LoginRequest.java
+@@ -0,0 +1,4 @@
++package com.ti.ifsc.dto;
++
++public record LoginRequest(String usuario, String senha) {
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/LoginResponse.java b/src/main/java/com/ti/ifsc/dto/LoginResponse.java
+new file mode 100644
+index 0000000..af135ed
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/LoginResponse.java
+@@ -0,0 +1,4 @@
++package com.ti.ifsc.dto;
++
++public record LoginResponse(String mensagem, String token) {
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/MensagemResponse.java b/src/main/java/com/ti/ifsc/dto/MensagemResponse.java
+new file mode 100644
+index 0000000..137d9c8
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/MensagemResponse.java
+@@ -0,0 +1,4 @@
++package com.ti.ifsc.dto;
++
++public record MensagemResponse(String mensagem) {
++}
+diff --git a/src/main/java/com/ti/ifsc/dto/RecuperarSenhaRequest.java b/src/main/java/com/ti/ifsc/dto/RecuperarSenhaRequest.java
+new file mode 100644
+index 0000000..0b1870a
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/dto/RecuperarSenhaRequest.java
+@@ -0,0 +1,4 @@
++package com.ti.ifsc.dto;
++
++public record RecuperarSenhaRequest(String contato) {
++}
+diff --git a/src/main/java/com/ti/ifsc/exception/ApiException.java b/src/main/java/com/ti/ifsc/exception/ApiException.java
+new file mode 100644
+index 0000000..da1bb53
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/exception/ApiException.java
+@@ -0,0 +1,17 @@
++package com.ti.ifsc.exception;
++
++import org.springframework.http.HttpStatus;
++
++public class ApiException extends RuntimeException {
++
++	private final HttpStatus status;
++
++	public ApiException(HttpStatus status, String mensagem) {
++		super(mensagem);
++		this.status = status;
++	}
++
++	public HttpStatus getStatus() {
++		return status;
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/exception/ApiExceptionHandler.java b/src/main/java/com/ti/ifsc/exception/ApiExceptionHandler.java
+new file mode 100644
+index 0000000..60ca3a2
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/exception/ApiExceptionHandler.java
+@@ -0,0 +1,31 @@
++package com.ti.ifsc.exception;
++
++import org.springframework.dao.DataIntegrityViolationException;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.http.converter.HttpMessageNotReadableException;
++import org.springframework.web.bind.annotation.ExceptionHandler;
++import org.springframework.web.bind.annotation.RestControllerAdvice;
++
++import com.ti.ifsc.dto.MensagemResponse;
++
++/** Todo erro volta como {"mensagem": "..."}, que é o que o frontend lê (dados.mensagem). */
++@RestControllerAdvice
++public class ApiExceptionHandler {
++
++	@ExceptionHandler(ApiException.class)
++	public ResponseEntity<MensagemResponse> handleApi(ApiException e) {
++		return ResponseEntity.status(e.getStatus()).body(new MensagemResponse(e.getMessage()));
++	}
++
++	@ExceptionHandler(HttpMessageNotReadableException.class)
++	public ResponseEntity<MensagemResponse> handleCorpoInvalido(HttpMessageNotReadableException e) {
++		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MensagemResponse("Requisição inválida!"));
++	}
++
++	@ExceptionHandler(DataIntegrityViolationException.class)
++	public ResponseEntity<MensagemResponse> handleDuplicado(DataIntegrityViolationException e) {
++		return ResponseEntity.status(HttpStatus.CONFLICT)
++				.body(new MensagemResponse("Usuário ou e-mail já cadastrado!"));
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/model/Cotacao.java b/src/main/java/com/ti/ifsc/model/Cotacao.java
+new file mode 100644
+index 0000000..e06497d
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/model/Cotacao.java
+@@ -0,0 +1,81 @@
++package com.ti.ifsc.model;
++
++import java.math.BigDecimal;
++import java.time.LocalDate;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.GeneratedValue;
++import jakarta.persistence.GenerationType;
++import jakarta.persistence.Id;
++import jakarta.persistence.Table;
++
++@Entity
++@Table(name = "cotacoes")
++public class Cotacao {
++
++	@Id
++	@GeneratedValue(strategy = GenerationType.IDENTITY)
++	private Long id;
++
++	/** "soja" ou "milho" (minúsculo). */
++	@Column(nullable = false, unique = true, length = 20)
++	private String cultura;
++
++	@Column(nullable = false, precision = 10, scale = 2)
++	private BigDecimal preco;
++
++	/** Variação percentual do dia, ex.: 0.85 ou -0.32. */
++	@Column(nullable = false, precision = 6, scale = 2)
++	private BigDecimal variacao;
++
++	@Column(nullable = false)
++	private LocalDate fechamento;
++
++	@Column(nullable = false, length = 500)
++	private String tendencia;
++
++	@Column(nullable = false, length = 500)
++	private String impacto;
++
++	protected Cotacao() {
++	}
++
++	public Cotacao(String cultura, BigDecimal preco, BigDecimal variacao, LocalDate fechamento,
++			String tendencia, String impacto) {
++		this.cultura = cultura;
++		this.preco = preco;
++		this.variacao = variacao;
++		this.fechamento = fechamento;
++		this.tendencia = tendencia;
++		this.impacto = impacto;
++	}
++
++	public Long getId() {
++		return id;
++	}
++
++	public String getCultura() {
++		return cultura;
++	}
++
++	public BigDecimal getPreco() {
++		return preco;
++	}
++
++	public BigDecimal getVariacao() {
++		return variacao;
++	}
++
++	public LocalDate getFechamento() {
++		return fechamento;
++	}
++
++	public String getTendencia() {
++		return tendencia;
++	}
++
++	public String getImpacto() {
++		return impacto;
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/model/Usuario.java b/src/main/java/com/ti/ifsc/model/Usuario.java
+new file mode 100644
+index 0000000..a23fb8e
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/model/Usuario.java
+@@ -0,0 +1,79 @@
++package com.ti.ifsc.model;
++
++import java.time.Instant;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.GeneratedValue;
++import jakarta.persistence.GenerationType;
++import jakarta.persistence.Id;
++import jakarta.persistence.Table;
++
++@Entity
++@Table(name = "usuarios")
++public class Usuario {
++
++	@Id
++	@GeneratedValue(strategy = GenerationType.IDENTITY)
++	private Long id;
++
++	@Column(nullable = false, length = 120)
++	private String nome;
++
++	@Column(nullable = false, unique = true, length = 160)
++	private String email;
++
++	@Column(nullable = false, unique = true, length = 40)
++	private String usuario;
++
++	@Column(name = "senha_hash", nullable = false, length = 100)
++	private String senhaHash;
++
++	@Column(length = 64)
++	private String token;
++
++	@Column(name = "criado_em", nullable = false, updatable = false)
++	private Instant criadoEm = Instant.now();
++
++	protected Usuario() {
++	}
++
++	public Usuario(String nome, String email, String usuario, String senhaHash) {
++		this.nome = nome;
++		this.email = email;
++		this.usuario = usuario;
++		this.senhaHash = senhaHash;
++	}
++
++	public Long getId() {
++		return id;
++	}
++
++	public String getNome() {
++		return nome;
++	}
++
++	public String getEmail() {
++		return email;
++	}
++
++	public String getUsuario() {
++		return usuario;
++	}
++
++	public String getSenhaHash() {
++		return senhaHash;
++	}
++
++	public String getToken() {
++		return token;
++	}
++
++	public void setToken(String token) {
++		this.token = token;
++	}
++
++	public Instant getCriadoEm() {
++		return criadoEm;
++	}
++}
+diff --git a/src/main/java/com/ti/ifsc/repository/CotacaoRepository.java b/src/main/java/com/ti/ifsc/repository/CotacaoRepository.java
+new file mode 100644
+index 0000000..e904bdc
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/repository/CotacaoRepository.java
+@@ -0,0 +1,15 @@
++package com.ti.ifsc.repository;
++
++import java.util.List;
++import java.util.Optional;
++
++import org.springframework.data.jpa.repository.JpaRepository;
++
++import com.ti.ifsc.model.Cotacao;
++
++public interface CotacaoRepository extends JpaRepository<Cotacao, Long> {
++
++	List<Cotacao> findAllByOrderByCulturaAsc();
++
++	Optional<Cotacao> findByCultura(String cultura);
++}
+diff --git a/src/main/java/com/ti/ifsc/repository/UsuarioRepository.java b/src/main/java/com/ti/ifsc/repository/UsuarioRepository.java
+new file mode 100644
+index 0000000..3f5c4e9
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/repository/UsuarioRepository.java
+@@ -0,0 +1,18 @@
++package com.ti.ifsc.repository;
++
++import java.util.Optional;
++
++import org.springframework.data.jpa.repository.JpaRepository;
++
++import com.ti.ifsc.model.Usuario;
++
++public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
++
++	Optional<Usuario> findByUsuario(String usuario);
++
++	Optional<Usuario> findByEmail(String email);
++
++	boolean existsByUsuario(String usuario);
++
++	boolean existsByEmail(String email);
++}
+diff --git a/src/main/java/com/ti/ifsc/service/AuthService.java b/src/main/java/com/ti/ifsc/service/AuthService.java
+new file mode 100644
+index 0000000..ccf9ff1
+--- /dev/null
++++ b/src/main/java/com/ti/ifsc/service/AuthService.java
+@@ -0,0 +1,115 @@
++package com.ti.ifsc.service;
++
++import java.nio.charset.StandardCharsets;
++import java.util.Locale;
++import java.util.Optional;
++import java.util.UUID;
++import java.util.regex.Pattern;
++
++import org.springframework.http.HttpStatus;
++import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
++import org.springframework.security.crypto.password.PasswordEncoder;
++import org.springframework.stereotype.Service;
++import org.springframework.transaction.annotation.Transactional;
++
++import com.ti.ifsc.dto.CadastroRequest;
++import com.ti.ifsc.dto.LoginRequest;
++import com.ti.ifsc.dto.LoginResponse;
++import com.ti.ifsc.dto.RecuperarSenhaRequest;
++import com.ti.ifsc.exception.ApiException;
++import com.ti.ifsc.model.Usuario;
++import com.ti.ifsc.repository.UsuarioRepository;
++
++@Service
++public class AuthService {
++
++	private static final Pattern EMAIL = Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
++	private static final Pattern USUARIO = Pattern.compile("^[a-z0-9._-]{3,40}$");
++	private static final int SENHA_MIN = 6;
++	private static final int SENHA_MAX_BYTES = 72; // limite do BCrypt
++
++	private final UsuarioRepository usuarios;
++	private final PasswordEncoder encoder = new BCryptPasswordEncoder();
++
++	public AuthService(UsuarioRepository usuarios) {
++		this.usuarios = usuarios;
++	}
++
++	@Transactional
++	public void cadastrar(CadastroRequest req) {
++		if (req == null || vazio(req.nome()) || vazio(req.email()) || vazio(req.usuario())
++				|| vazio(req.senha()) || vazio(req.confirmarSenha())) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "Preencha todos os campos!");
++		}
++
++		String nome = req.nome().trim();
++		String email = req.email().trim().toLowerCase(Locale.ROOT);
++		String usuario = req.usuario().trim().toLowerCase(Locale.ROOT);
++		String senha = req.senha();
++
++		if (nome.length() > 120) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "Nome muito longo!");
++		}
++		if (!EMAIL.matcher(email).matches() || email.length() > 160) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "E-mail inválido!");
++		}
++		if (!USUARIO.matcher(usuario).matches()) {
++			throw new ApiException(HttpStatus.BAD_REQUEST,
++					"Usuário deve ter de 3 a 40 caracteres: letras, números, ponto, hífen ou sublinhado.");
++		}
++		if (!senha.equals(req.confirmarSenha())) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "As senhas não coincidem!");
++		}
++		if (senha.length() < SENHA_MIN) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "A senha deve ter pelo menos 6 caracteres!");
++		}
++		if (senha.getBytes(StandardCharsets.UTF_8).length > SENHA_MAX_BYTES) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "Senha muito longa!");
++		}
++		if (usuarios.existsByUsuario(usuario)) {
++			throw new ApiException(HttpStatus.CONFLICT, "Este usuário já está em uso!");
++		}
++		if (usuarios.existsByEmail(email)) {
++			throw new ApiException(HttpStatus.CONFLICT, "Este e-mail já está cadastrado!");
++		}
++
++		usuarios.saveAndFlush(new Usuario(nome, email, usuario, encoder.encode(senha)));
++	}
++
++	@Transactional
++	public LoginResponse login(LoginRequest req) {
++		if (req == null || vazio(req.usuario()) || vazio(req.senha())) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "Preencha usuário e senha!");
++		}
++
++		// a tela de login aceita "E-mail ou usuário"
++		String identificador = req.usuario().trim().toLowerCase(Locale.ROOT);
++		Optional<Usuario> encontrado = identificador.contains("@")
++				? usuarios.findByEmail(identificador)
++				: usuarios.findByUsuario(identificador);
++
++		if (encontrado.isEmpty()
++				|| req.senha().getBytes(StandardCharsets.UTF_8).length > SENHA_MAX_BYTES
++				|| !encoder.matches(req.senha(), encontrado.get().getSenhaHash())) {
++			throw new ApiException(HttpStatus.UNAUTHORIZED, "Usuário ou senha incorretos!");
++		}
++
++		Usuario u = encontrado.get();
++		String token = UUID.randomUUID().toString();
++		u.setToken(token);
++		usuarios.save(u);
++
++		return new LoginResponse("Login realizado com sucesso!", token);
++	}
++
++	/** Só valida a entrada: ainda não há envio de e-mail/SMS. */
++	public void recuperarSenha(RecuperarSenhaRequest req) {
++		if (req == null || vazio(req.contato())) {
++			throw new ApiException(HttpStatus.BAD_REQUEST, "Informe seu e-mail ou telefone!");
++		}
++	}
++
++	private static boolean vazio(String s) {
++		return s == null || s.isBlank();
++	}
++}
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+index 7bedcd9..54cbc07 100644
+--- a/src/main/resources/application.properties
++++ b/src/main/resources/application.properties
+@@ -1 +1,10 @@
+ spring.application.name=ifsc
++
++# PostgreSQL (sobrescreva com as variáveis de ambiente DB_URL, DB_USER, DB_PASSWORD)
++spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/brainstorm}
++spring.datasource.username=${DB_USER:postgres}
++spring.datasource.password=${DB_PASSWORD:postgres}
++
++# cria/atualiza as tabelas automaticamente (ok para desenvolvimento)
++spring.jpa.hibernate.ddl-auto=update
++spring.jpa.open-in-view=false
