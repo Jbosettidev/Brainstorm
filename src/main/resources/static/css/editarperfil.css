@@ -36,28 +36,32 @@ select {
 .fundo-site {
     min-height: 100vh;
 
-    filter: brightness(0.52);
+    filter: brightness(0.82);
     pointer-events: none;
 }
-
 .cabecalho-simulado {
-    height: 120px;
-    padding: 15px 70px;
+    height: 150px;
+    padding: 0 9%;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
 
     background: white;
 }
 
 .logo {
     width: 125px;
+    justify-self: start;
 }
 
 .cabecalho-simulado nav {
+    grid-column: 2;
+
     display: flex;
-    gap: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
 
     color: #cccccc;
     font-size: 28px;
@@ -68,18 +72,16 @@ select {
 }
 
 .usuario-simulado {
+    grid-column: 3;
+    justify-self: end;
+
     display: flex;
     align-items: center;
     gap: 12px;
 
     font-size: 18px;
+    white-space: nowrap;
 }
-
-.usuario-simulado i {
-    color: var(--verde);
-    font-size: 40px;
-}
-
 .cards-simulados {
     padding: 80px 50px;
 

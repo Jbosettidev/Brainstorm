@@ -1,0 +1,328 @@
+diff --git a/src/main/resources/static/editarperfil.html b/src/main/resources/static/editarperfil.html
+--- a/src/main/resources/static/editarperfil.html
++++ b/src/main/resources/static/editarperfil.html
+@@ -1,9 +1,35 @@
+-            <div class="card-simulado">
+-                <h3>Calendário e clima</h3>
+-                <p>Veja as melhores condições para o plantio.</p>
++            <div class="card-simulado card-calendario">
++                <div class="item-calendario">
++                    <h3>Calendário</h3>
++                    <span class="icone-circular">
++                        <i class="fa-solid fa-calendar-check"></i>
++                    </span>
++                </div>
++                <div class="item-calendario">
++                    <h3>Clima</h3>
++                    <span class="icone-circular">
++                        <i class="fa-solid fa-cloud-sun-rain"></i>
++                    </span>
++                </div>
+                 <button>Acessar</button>
+             </div>
+ 
+         </main>
+ 
++        <footer class="rodape-simulado">
++            <div class="rodape-coluna rodape-descricao">
++                <p>Inovação e tecnologia aplicadas ao campo para uma agricultura mais inteligente.</p>
++            </div>
++            <div class="rodape-coluna">
++                <h3>Links Rápidos</h3>
++                <a href="#">Sobre Nós</a>
++                <a href="#">Serviços</a>
++            </div>
++            <div class="rodape-coluna">
++                <h3>Contato</h3>
++                <p><i class="fa-solid fa-envelope"></i> brainstormagricola@gmail.com</p>
++                <p><i class="fa-solid fa-phone"></i> (49) 999286024</p>
++            </div>
++        </footer>
++
+     </div>
+diff --git a/src/main/resources/static/css/editarperfil.css b/src/main/resources/static/css/editarperfil.css
+--- a/src/main/resources/static/css/editarperfil.css
++++ b/src/main/resources/static/css/editarperfil.css
+@@ -1,31 +1,35 @@
+ .fundo-site {
+     min-height: 100vh;
+-
+-    filter: brightness(0.52);
++    filter: brightness(0.82);
+     pointer-events: none;
+ }
+ 
+ .cabecalho-simulado {
+-    height: 120px;
+-    padding: 15px 70px;
++    height: 147px;
++    padding: 0 9%;
+ 
+-    display: flex;
++    display: grid;
++    grid-template-columns: 1fr auto 1fr;
+     align-items: center;
+-    justify-content: space-between;
+ 
+     background: white;
+ }
+ 
+ .logo {
+-    width: 125px;
++    width: 110px;
++    justify-self: start;
+ }
+ 
+ .cabecalho-simulado nav {
++    grid-column: 2;
++
+     display: flex;
+-    gap: 52px;
++    align-items: center;
++    justify-content: center;
++    gap: 42px;
+ 
+     color: #cccccc;
+-    font-size: 28px;
++    font-size: 26px;
+ }
+ 
+ .cabecalho-simulado nav .ativo {
+@@ -33,54 +37,62 @@
+ }
+ 
+ .usuario-simulado {
++    grid-column: 3;
++    justify-self: end;
++
+     display: flex;
+     align-items: center;
+     gap: 12px;
+ 
+-    font-size: 18px;
++    font-size: 16px;
++    white-space: nowrap;
+ }
+ 
+ .usuario-simulado i {
+     color: var(--verde);
+-    font-size: 40px;
++    font-size: 38px;
+ }
+ 
+ .cards-simulados {
+-    padding: 80px 50px;
++    width: min(1410px, 82%);
++    margin: 0 auto;
++    padding: 69px 0 150px;
+ 
+-    display: flex;
+-    justify-content: center;
+-    gap: 40px;
++    display: grid;
++    grid-template-columns: repeat(3, minmax(0, 1fr));
++    gap: 62px;
+ }
+ 
+ .card-simulado {
+-    width: 320px;
+-    height: 230px;
+-    padding: 30px;
++    min-width: 0;
++    height: 302px;
++    padding: 42px 31px;
+ 
+     position: relative;
+ 
+     background: #eeeeee;
+-    border-radius: 25px;
++    border-radius: 32px;
+ }
+ 
+ .card-simulado h3 {
+-    margin-bottom: 18px;
+-    font-size: 22px;
++    margin-bottom: 16px;
++    font-size: 23px;
++    line-height: 1.2;
+ }
+ 
+ .card-simulado p {
+     color: var(--verde-escuro);
+-    font-size: 17px;
++    font-size: 18px;
+     line-height: 1.5;
+ }
+ 
+ .card-simulado button {
+-    padding: 13px 48px;
++    width: 182px;
++    min-height: 52px;
+ 
+     position: absolute;
+     left: 50%;
+-    bottom: -20px;
++    bottom: -28px;
+ 
+     border: none;
+     border-radius: 30px;
+@@ -89,4 +101,82 @@
+     color: white;
+ 
+     transform: translateX(-50%);
++    font-size: 17px;
++    font-weight: 600;
+ }
++
++.card-calendario {
++    display: grid;
++    grid-template-columns: 1fr 1fr;
++    gap: 18px;
++    padding: 42px 24px;
++}
++
++.item-calendario {
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    gap: 16px;
++}
++
++.item-calendario h3 {
++    margin: 0;
++    color: var(--verde);
++    font-size: 20px;
++    text-align: center;
++}
++
++.icone-circular {
++    width: 144px;
++    height: 144px;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    border-radius: 50%;
++    background: #fafafa;
++    color: var(--verde);
++    font-size: 55px;
++}
++
++.rodape-simulado {
++    min-height: 250px;
++    padding: 62px 9% 45px;
++    display: grid;
++    grid-template-columns: 1.2fr 1fr 1.2fr;
++    gap: 55px;
++    background: var(--verde);
++    color: white;
++}
++
++.rodape-coluna {
++    display: flex;
++    flex-direction: column;
++    align-items: flex-start;
++    gap: 13px;
++    font-size: 17px;
++}
++
++.rodape-coluna h3 {
++    margin-bottom: 8px;
++    padding-bottom: 8px;
++    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
++    font-size: 22px;
++}
++
++.rodape-coluna a {
++    color: white;
++    text-decoration: none;
++}
++
++.rodape-coluna p {
++    line-height: 1.5;
++}
++
++.rodape-coluna p i {
++    margin-right: 9px;
++}
++
++.rodape-descricao {
++    justify-content: center;
++    font-size: 19px;
++}
+@@ -390,12 +394,29 @@
+     }
+ 
+     .cards-simulados {
+-        padding-left: 20px;
+-        padding-right: 20px;
++        width: 88%;
++        gap: 24px;
++    }
++
++    .card-simulado {
++        padding-left: 22px;
++        padding-right: 22px;
++    }
++
++    .icone-circular {
++        width: 110px;
++        height: 110px;
++        font-size: 43px;
++    }
++
++    .rodape-simulado {
++        padding-left: 6%;
++        padding-right: 6%;
++        gap: 28px;
+     }
+ }
+ 
+-/* APENAS PARA NÃO QUEBRAR EM TELA MENOR */
++/* Ajustes para telas menores */
+ @media (max-width: 600px) {
+     :root {
+         --largura-painel: 100%;
+@@ -405,4 +422,43 @@
+         padding-left: 22px;
+         padding-right: 22px;
+     }
++
++    .cabecalho-simulado {
++        height: 100px;
++        padding: 0 18px;
++        grid-template-columns: auto 1fr;
++    }
++
++    .logo {
++        width: 85px;
++    }
++
++    .cabecalho-simulado nav {
++        grid-column: 2;
++        justify-self: end;
++        gap: 17px;
++        font-size: 21px;
++    }
++
++    .usuario-simulado {
++        display: none;
++    }
++
++    .cards-simulados {
++        width: 88%;
++        padding: 35px 0 75px;
++        grid-template-columns: 1fr;
++        gap: 55px;
++    }
++
++    .card-simulado,
++    .card-calendario {
++        height: 250px;
++    }
++
++    .rodape-simulado {
++        grid-template-columns: 1fr;
++        gap: 30px;
++        padding: 38px 8%;
++    }
+ }
