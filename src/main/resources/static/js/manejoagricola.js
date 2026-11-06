@@ -11,13 +11,13 @@ function selecionarCultura(nome, elemento) {
 
     elemento.classList.add("selecionada");
 
-    imgSoja.src = "iconesojaP.png";
-    imgMilho.src = "iconemilhoP.png";
+    imgSoja.src = "img/iconesojaP.png";
+    imgMilho.src = "img/iconemilhoP.png";
 
     if (nome === "Soja") {
-        imgSoja.src = "iconesojaC.png";
+        imgSoja.src = "img/iconesojaC.png";
     } else if (nome === "Milho") {
-        imgMilho.src = "iconemilhoC.png";
+        imgMilho.src = "img/iconemilhoC.png";
     }
 }
 

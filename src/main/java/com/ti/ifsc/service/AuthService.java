@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ti.ifsc.dto.CadastroRequest;
 import com.ti.ifsc.dto.LoginRequest;
 import com.ti.ifsc.dto.LoginResponse;
+import com.ti.ifsc.dto.PerfilResponse;
 import com.ti.ifsc.dto.RecuperarSenhaRequest;
 import com.ti.ifsc.exception.ApiException;
 import com.ti.ifsc.model.Usuario;
@@ -99,7 +100,23 @@ public class AuthService {
 		u.setToken(token);
 		usuarios.save(u);
 
-		return new LoginResponse("Login realizado com sucesso!", token);
+		return new LoginResponse("Login realizado com sucesso!", token, u.getNome(), u.getEmail(), u.getUsuario());
+	}
+
+	/** Valida o token guardado no navegador ("Authorization: Bearer <token>") e devolve os dados do cadastro. */
+	@Transactional(readOnly = true)
+	public PerfilResponse perfil(String authorization) {
+		String prefixo = "Bearer ";
+
+		if (authorization == null || !authorization.startsWith(prefixo) || authorization.length() == prefixo.length()) {
+			throw new ApiException(HttpStatus.UNAUTHORIZED, "Sessão inválida!");
+		}
+
+		String token = authorization.substring(prefixo.length()).trim();
+		Usuario u = usuarios.findByToken(token)
+				.orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Sessão inválida!"));
+
+		return new PerfilResponse(u.getNome(), u.getEmail(), u.getUsuario());
 	}
 
 	/** Só valida a entrada: ainda não há envio de e-mail/SMS. */

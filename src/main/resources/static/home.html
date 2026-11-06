@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brainstorm Agrícola - Home</title>
+
+    <!-- ÍCONES -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="css/stylehome.css"
+    >
+    <script src="js/auth.js"></script>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="main-header">
+
+        <div class="container header-content">
+
+
+            <!-- LOGO -->
+            <div class="logo-wrapper">
+
+                <a href="home.html">
+
+                    <img
+                        src="img/Logo.png"
+                        alt="Brainstorm Agrícola"
+                        class="header-logo-img"
+                    >
+
+                </a>
+
+            </div>
+
+
+            <!-- MENU -->
+            <nav class="top-nav">
+
+
+                <!-- HOME -->
+                <a
+                    href="home.html"
+                    class="nav-item active"
+                    title="Home"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                </a>
+
+
+                <!-- BOLSA DE CHICAGO -->
+                <a
+                    href="bolsadechicago.html"
+                    class="nav-item"
+                    title="Bolsa de Chicago"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </a>
+
+
+                <!-- COMPARTILHAMENTO -->
+                <a
+                    href="compartilhamentofotos.html"
+                    class="nav-item"
+                    title="Compartilhamento"
+                >
+
+                    <i class="fa-solid fa-comment-dots"></i>
+
+                </a>
+
+
+                <!-- CONFIGURAÇÕES -->
+                <a
+                    href="configuracoes.html"
+                    class="nav-item"
+                    title="Configurações"
+                >
+
+                    <i class="fa-solid fa-gear"></i>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- PERFIL -->
+            <a
+                href="editarperfil.html"
+                class="user-profile"
+            >
+
+                <span id="nomeUsuarioHome">
+                    Olá, usuário!
+                </span>
+
+
+                <div class="foto-home-box">
+
+                    <img
+                        id="fotoUsuarioHome"
+                        src=""
+                        alt="Foto do usuário"
+                    >
+
+                    <i
+                        id="iconeUsuarioHome"
+                        class="fa-solid fa-circle-user"
+                    ></i>
+
+                </div>
+
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="container conteudo-home">
+
+
+        <div class="dashboard-grid">
+
+
+            <!-- MANEJO AGRÍCOLA -->
+            <section class="card">
+
+                <div class="card-body">
+
+                    <h3 class="card-title">
+                        Recomendações de manejo agrícola
+                    </h3>
+
+                    <p class="card-description">
+                        Orientações certas pra sua lavoura.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="manejoagricola.html"
+                    class="link-botao"
+                >
+
+                    <span class="btn-acessar">
+                        Acessar
+                    </span>
+
+                </a>
+
+            </section>
+
+
+
+            <!-- COMPARTILHAMENTO -->
+            <section class="card">
+
+                <div class="card-body">
+
+                    <h3 class="card-title">
+                        Compartilhamento de fotos
+                    </h3>
+
+                    <p class="card-description">
+                        Publique fotos das lavouras, resultados e experiências com outros usuários.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="compartilhamentofotos.html"
+                    class="link-botao"
+                >
+
+                    <span class="btn-acessar">
+                        Acessar
+                    </span>
+
+                </a>
+
+            </section>
+
+
+
+            <!-- CALENDÁRIO E CLIMA -->
+            <section class="card">
+
+
+                <div class="card-body">
+
+
+                    <div class="mini-grid">
+
+
+                        <!-- CALENDÁRIO -->
+                        <div
+                            class="mini-item selecionado"
+                            onclick="selecionarHome('calendario', this)"
+                        >
+
+                            <span>
+                                Calendário
+                            </span>
+
+
+                            <div class="icon-box">
+
+                                <i class="fa-solid fa-calendar-check"></i>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- CLIMA -->
+                        <div
+                            class="mini-item selecionado"
+                            onclick="selecionarHome('clima', this)"
+                        >
+
+                            <span>
+                                Clima
+                            </span>
+
+
+                            <div class="icon-box">
+
+                                <i class="fa-solid fa-cloud-sun-rain"></i>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-acessar"
+                    onclick="acessarHome()"
+                >
+
+                    Acessar
+
+                </button>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer class="main-footer">
+
+
+        <div class="container footer-content">
+
+
+            <!-- COLUNA 1 -->
+            <div class="footer-column">
+
+
+                <img
+                    src="img/png.png"
+                    alt="Brainstorm Agrícola"
+                    class="footer-logo"
+                >
+
+
+                <p>
+                    Inovação e tecnologia aplicadas ao campo para uma agricultura mais inteligente.
+                </p>
+
+
+                <div class="social-icons">
+
+
+                    <a
+                        href="https://www.instagram.com/brainstormagricola"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+
+                    <a
+                        href="https://www.facebook.com/share/1BgAwwZg3i/?mibextid=wwXIfr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <i class="fa-brands fa-facebook"></i>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- COLUNA 2 -->
+            <div class="footer-column">
+
+
+                <h4>
+                    Links Rápidos
+                </h4>
+
+
+                <ul>
+
+                    <li>
+                        <a href="sobrenos.html">
+                            Sobre Nós
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="servicos.html">
+                            Serviços
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="privacidade.html">
+                            Privacidade
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- COLUNA 3 -->
+            <div class="footer-column">
+
+
+                <h4>
+                    Contato
+                </h4>
+
+
+                <div class="contact-info">
+
+
+                    <p>
+                        <i class="fa-solid fa-envelope"></i>
+
+                        brainstormagricola@gmail.com
+                    </p>
+
+
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+
+                        (49) 999286024
+                    </p>
+
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Rua Euclides Hack - Bairro Veneza, Xanxerê - SC
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 Brainstorm Agrícola. Todos os direitos reservados.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

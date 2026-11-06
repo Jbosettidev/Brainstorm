@@ -356,6 +356,8 @@ function sairDaConta() {
         return;
     }
 
+    localStorage.removeItem("token");
+
     window.location.href = "telainicial.html";
 }
 
@@ -376,6 +378,8 @@ function excluirConta() {
     localStorage.removeItem("brainstormPublicacoes");
 
     alert("Conta excluída com sucesso.");
+
+    localStorage.removeItem("token");
 
     window.location.href = "telainicial.html";
 }

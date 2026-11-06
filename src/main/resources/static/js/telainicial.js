@@ -4,7 +4,7 @@ const telas = document.querySelectorAll(".tela");
 const bolinhas = document.querySelectorAll(".bolinhas span");
 const botaoAvancar = document.getElementById("btnAvancar");
  
-const API_URL = "http://localhost:3000/api";
+const API_URL = "/api";
  
 function mostrarSecao(idSecao) {
     const secoes = [
@@ -93,6 +93,7 @@ async function cadastrar() {
         mostrarToast(dados.mensagem, "sucesso");
  
         setTimeout(function() {
+            document.getElementById("usuario").value = usuario;
             mostrarSecao("login");
         }, 1200);
     } catch (erro) {
@@ -124,7 +125,7 @@ async function entrar() {
             return;
         }
  
-        localStorage.setItem("token", dados.token);
+        BrainstormAuth.salvarSessao(dados);
  
         mostrarToast(dados.mensagem, "sucesso");
  

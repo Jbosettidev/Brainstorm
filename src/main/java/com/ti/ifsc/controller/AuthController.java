@@ -2,8 +2,10 @@ package com.ti.ifsc.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import com.ti.ifsc.dto.CadastroRequest;
 import com.ti.ifsc.dto.LoginRequest;
 import com.ti.ifsc.dto.LoginResponse;
 import com.ti.ifsc.dto.MensagemResponse;
+import com.ti.ifsc.dto.PerfilResponse;
 import com.ti.ifsc.dto.RecuperarSenhaRequest;
 import com.ti.ifsc.service.AuthService;
 
@@ -34,6 +37,11 @@ public class AuthController {
 	@PostMapping("/login")
 	public LoginResponse login(@RequestBody LoginRequest req) {
 		return authService.login(req);
+	}
+
+	@GetMapping("/me")
+	public PerfilResponse me(@RequestHeader(value = "Authorization", required = false) String authorization) {
+		return authService.perfil(authorization);
 	}
 
 	@PostMapping("/recuperar-senha")

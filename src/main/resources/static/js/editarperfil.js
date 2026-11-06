@@ -234,6 +234,8 @@ function excluirConta(evento) {
 
     alert("Conta excluída.");
 
+    localStorage.removeItem("token");
+
     window.location.href = "telainicial.html";
 }
 
